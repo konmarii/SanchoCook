@@ -1,0 +1,2 @@
+module Producer::RecipesHelper
+end

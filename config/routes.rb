@@ -48,8 +48,9 @@ Rails.application.routes.draw do
     resources :recipes
     resources :ingredients, only: [:edit, :create, :update, :destroy]
     resources :recipe_details, only: [:edit, :create, :update, :destroy]
-    resources :orders, only: [:index, :show, :new, :update]
-    resources :order_details, only: [:update]
+    resources :orders, only: [:show, :update] do
+      patch '/order_details/:id', to: 'order_details#update', as: 'details'
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

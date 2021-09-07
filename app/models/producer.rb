@@ -4,4 +4,6 @@ class Producer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :image
+
+  has_many :products
 end

@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  
+  scope :manage do
+    get :login, to: 'users#new_admin_session', as: :new_admin_session
+    post :login, to: 'users#create_admin_session', as: :create_admin_session
+    delete :logout,to: 'users#destroy_admin_session', as: :destroy_admin_session
+  end
 
   devise_for :producers, controllers: {
   sessions:      'producers/sessions',
@@ -13,8 +20,7 @@ Rails.application.routes.draw do
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
   }
-  
-  ActiveAdmin.routes(self)
+
 
   root to: 'customer/homes#top'
   get '/about', to: 'customer/homes#about'
@@ -45,12 +51,6 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
   end
 
-  namespace :admin do
-    root to: 'homes#top'
-    resources :customers
-    resources :producers
-    resources :genres
-  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

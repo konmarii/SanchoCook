@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 
-  enum sales_status: {on_sale: 0, stop_sale: 1}
+  #enum sales_status: {on_sale: :true, stop_sale: :false}
 
   attachment :image
 

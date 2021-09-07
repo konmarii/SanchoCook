@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
       root_path
     when Producer
       producer_root_path
+    when AdminUser
+      admin_root_path
     end
   end
 

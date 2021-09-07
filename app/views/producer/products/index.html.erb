@@ -21,9 +21,9 @@
               <td class = "text-dark"><%=link_to product.name, producer_product_path(product) %></td>
               <td><%= product.tax_excluded_price %>円</td>
               <div>
-              <% if product.sales_status == 0 %>
+              <% if product.sales_status == true %>
                 <td class="text-success">販売中</td>
-              <% elsif product.sales_status == 1 %>
+              <% elsif product.sales_status == false %>
                 <td class="text-muted">売切れ</td>
               <% end %>
               </div>

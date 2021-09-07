@@ -26,16 +26,16 @@
           <tr>
             <th class="text-nowrap pr-3">販売ステータス</th>
 
-            <% if @product.sales_status_before_type_cast == 0 %>
+            <% if @product.sales_status == true %>
               <th class="text-success">販売中</th>
-            <% elsif @product.sales_status_before_type_cast == 1 %>
+            <% elsif @product.sales_status == false %>
               <th class="text-muted">売切れ</th>
             <% end %>
 
           </tr>
           <tr>
            <td>
-            <%= link_to "編集する", edit_producer_product_path(@product), class: "btn btn-success text-nowrap" %>
+            <%= link_to "編集する", edit_producer_product_path(@product), class: "btn btn-success" %>
            </td>
            <td>
             <%= link_to "削除する", producer_product_path, method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除しますか？"} %>

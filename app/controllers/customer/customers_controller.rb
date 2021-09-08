@@ -13,7 +13,7 @@ class Customer::CustomersController < ApplicationController
   def update
     customer = Customer.find(current_customer.id)
     customer.update(customer_params)
-    redirect_to customers_my_page_path
+    redirect_to my_page_path
   end
 
   def unsubscribe
@@ -30,7 +30,7 @@ class Customer::CustomersController < ApplicationController
   def correct_customer
     @customer = Customer.find(params[:id])
     unless @customer.id == current_customer.id
-     redirect_to customers_my_page_path
+     redirect_to my_page_path
     end
   end
 

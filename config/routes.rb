@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   registrations: 'customers/registrations'
   }
 
-
   root to: 'customer/homes#top'
   get '/about', to: 'customer/homes#about'
 
@@ -38,19 +37,30 @@ Rails.application.routes.draw do
   post '/cart_products', to: 'customer/cart_products#create',  as: 'create_cart_products'
 
   resources :customers, module: :customer, only: [:show, :edit, :update]
-  get '/customers/my_page', to: 'customer/customers#show'
-  get '/customers/:id/my_page', to: 'customer/customers#unsubscribe', as: 'customer_unsubscribe'
+  get '/my_page', to: 'customer/customers#show'
+  get '/customers/:id/unsubscribe', to: 'customer/customers#unsubscribe', as: 'customer_unsubscribe'
   patch '/customers/withdraw', to: 'customer/customers#withdraw'
 
   namespace :producer do
     root to: 'homes#top'
+
+    resources :producers, only: [:edit, :update]
+    get '/my_page', to: 'producers#show'
+    get '/:id/my_page', to: 'producers#unsubscribe', as: 'unsubscribe'
+    patch '/withdraw', to: 'producers#withdraw'
+
     resources :products
+
     resources :recipes
+
     resources :ingredients, only: [:edit, :create, :update, :destroy]
+
     resources :recipe_details, only: [:edit, :create, :update, :destroy]
+
     resources :orders, only: [:show, :update] do
       patch '/order_details/:id', to: 'order_details#update', as: 'details'
     end
+
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

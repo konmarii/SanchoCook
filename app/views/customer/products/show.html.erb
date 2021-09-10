@@ -25,6 +25,16 @@
           </div>
         </div>
       </div>
+      <% @recipes.each do |recipe| %>
+        <div class="card" style="width: 18rem;">
+          <%= attachment_image_tag recipe, :image, :fill, 550, 400, format: 'jpeg' %>
+          <div class="card-body">
+            <div class="card-title"><%= recipe.name %></div>
+            <p class="card-text"><%= recipe.introduction %></p>
+            <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

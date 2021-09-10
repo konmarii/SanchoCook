@@ -53,6 +53,11 @@
             </li>
             <li class="nav-item">
               <div class="social">
+                <%= link_to 'レシピ一覧', producer_recipes_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
                 <%= link_to 'ログアウト', destroy_producer_session_path, method: :delete, class: 'nav-link' %>
               </div>
             </li>

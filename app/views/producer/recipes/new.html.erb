@@ -6,28 +6,25 @@
           <div class="col-md-8 offset-md-1">
 
             <%= form_with model: [:producer, @recipe], local:true do |f| %>
-  
+
               <table  class="table table-borderless">
                 <tbody>
+
                   <tr>
-                    <td>レシピ画像</td>
+                    <td>レシピを投稿する商品を選択</td>
                     <td>
-                      <%= f.attachment_field :image, class:"form-control-file" %>
+                      <%= f.select :product_id, @products.map { |product| [product.name, product.id] }, :include_blank => "選択してください" %>
                     </td>
                   </tr>
+
                   <tr>
                     <td>レシピ名</td>
-                    <td >
+                    <td>
                       <%= f.text_field :name, placeholder: "レシピ名", class:"form-control"%>
                     </td>
                   </tr>
-                  <tr>
-                    <td>レシピ紹介</td>
-                    <td>
-                      <%= f.text_area :introduction, placeholder: "ここに紹介文を記述します", class:"form-control" %>
-                    </td>
-                  </tr>
-  
+
+
                   <tr>
                     <td>&nbsp;</td>
                     <td>
@@ -38,68 +35,6 @@
               </table>
             <% end %>
 
-            <%= form_with model: [:producer, @ingredient], local:true do |f| %>
-
-              <table  class="table table-borderless">
-                <thread>
-                  <tr>
-                    <td>材料名</td>
-                    <td>数量</td>
-                    <td>単位</td>
-                  </tr>
-                </thread>
-                <tbody>
-                  <tr>
-                    <td>
-                      <%= f.text_field :name, placeholder: "材料名", class:"form-control" %>
-                    </td>
-                    <td >
-                      <%= f.text_field :amount, placeholder: "数量", class:"form-control"%>
-                    </td>
-                    <td>
-                      <%= f.text_field :unit, placeholder: "単位", class:"form-control" %>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                    <%= f.submit '材料を登録', class: "btn btn-success"  %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            <% end %>
-            
-            <%= form_with model: [:producer, @recipe_detail], local:true do |f| %>
-
-              <table  class="table table-borderless">
-                <thread>
-                  <tr>
-                    <td>詳細画像</td>
-                    <td>説明</td>
-                  </tr>
-                </thread>
-                <tbody>
-                  <tr>
-                    <td>
-                      <%= f.attachment_field :image, class:"form-control-file" %>
-                    </td>
-                    <td>
-                      <%= f.text_field :explanation, placeholder: "説明文", class:"form-control" %>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                    <%= f.submit '手順を登録', class: "btn btn-success"  %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            <% end %>
-            
           </div>
         </div>
       </div>

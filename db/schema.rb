@@ -141,10 +141,10 @@ ActiveRecord::Schema.define(version: 2021_09_06_070222) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.integer "products_id", null: false
+    t.integer "product_id", null: false
     t.string "name", null: false
-    t.string "image_id", null: false
-    t.text "introduction", null: false
+    t.string "image_id"
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

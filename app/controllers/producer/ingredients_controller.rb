@@ -1,6 +1,12 @@
 class Producer::IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    @recipe = params[:id]
+    if @ingredient.save
+      redirect_to request.referer
+    else
+      render :edit
+    end
   end
 
   def edit

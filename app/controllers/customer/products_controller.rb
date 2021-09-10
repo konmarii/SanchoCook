@@ -7,5 +7,6 @@ class Customer::ProductsController < ApplicationController
     @cart_product = CartProduct.new
     @product = Product.find(params[:id])
     @numbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    @recipes =  Recipe.where(product_id: @product.id)
   end
 end

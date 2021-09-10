@@ -2,10 +2,11 @@
   <div class="row mt-5">
     <div class="col-md-8 offset-md-1">
     <h2>商品詳細</h2>
+      <div class="product-box col-9 d-flex flex-row">
         <%= attachment_image_tag @product, :image, :fill, 550, 400, format: 'jpeg' %>
         <div class="col-lg-6 col-md-10 col-sm-10 pr-4 pl-4">
-          <div class="product-show-detail">
-            <p class="product-name pb-2"><%= @product.name %></p>
+          <div class="product-show-detail mt-2">
+            <h3 class="product-name pb-2"><%= @product.name %></h3>
             <div class="right-product-detail">
               <p class="product-introduction"><%= @product.introduction %></p>
               <div class="d-flex flex-row mt-6 product_include_tax">
@@ -24,6 +25,16 @@
           </div>
         </div>
       </div>
+      <% @recipes.each do |recipe| %>
+        <div class="card" style="width: 18rem;">
+          <%= attachment_image_tag recipe, :image, :fill, 550, 400, format: 'jpeg' %>
+          <div class="card-body">
+            <div class="card-title"><%= recipe.name %></div>
+            <p class="card-text"><%= recipe.introduction %></p>
+            <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

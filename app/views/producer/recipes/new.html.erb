@@ -1,2 +1,43 @@
-<h1>Producer::Recipes#new</h1>
-<p>Find me in app/views/producer/recipes/new.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+      <h2>レシピ新規登録</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-1">
+
+            <%= form_with model: [:producer, @recipe], local:true do |f| %>
+
+              <table  class="table table-borderless">
+                <tbody>
+
+                  <tr>
+                    <td>レシピを投稿する商品を選択</td>
+                    <td>
+                      <%= f.select :product_id, @products.map { |product| [product.name, product.id] }, :include_blank => "選択してください" %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>レシピ名</td>
+                    <td>
+                      <%= f.text_field :name, placeholder: "レシピ名", class:"form-control"%>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                    <%= f.submit 'レシピ登録', class: "btn btn-success"  %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

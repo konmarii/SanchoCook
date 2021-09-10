@@ -3,17 +3,23 @@
     <div class="col-md-8 offset-md-1">
     <h2>商品一覧</h2>
     <h2>（<%= @products.count %>件）</h2>
+    <div class="d-flex align-content-around flex-wrap">
       <% @products.each do |product| %>
-      <div class="col-lg-4 col-md-6 col-sm-12 product-box mx-auto justify-content-center">
         <%= link_to product_path(product), class:"justify-content-center" do %>
-          <div class="product-image text-center">
-            <%= attachment_image_tag product, :image, :fill, 350, 300, format: 'jpeg' %>
-            <%= product.name %><br>
-            ¥<%= product.tax_excluded_price %><br>
-            <%= product.introduction %>
+          <div class="product-box mr-3">
+            <div class="product-image mb-2">
+              <%= attachment_image_tag product, :image, :fill, 200, 150, format: 'jpeg' %>
+            </div>
+            <div class="product-detail">
+              <p>
+                <%= product.name %><br>
+                ¥<%= product.tax_excluded_price %><br>
+                <%= product.introduction %>
+              </p>
+            </div>
           </div>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>    
   </div>
 </div>

@@ -2,7 +2,9 @@
   <div class="row mt-5">
     <div class="col-md-8 offset-md-1">
       <h5>マイページ</h5>
-
+      <div class="d-grid gap-2 d-md-flex justify-content-end">
+        <%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-outline-secondary" %>
+      </div>
       <table class="table table-hover table-inverse">
         <tr>
           <th>氏名</th>
@@ -29,9 +31,8 @@
           <th><%= @customer.email %></th>
         </tr>
       </table>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-outline-secondary" %>
-        <%= link_to "注文履歴一覧", orders_path, class: "btn btn-outline-secondary" %
+      <div class="d-grid gap-2 d-md-flex justify-content-end">
+        <%= link_to "注文履歴一覧", orders_path, class: "btn btn-outline-secondary" %>
       </div>
     </div>
   </div>

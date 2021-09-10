@@ -1,6 +1,6 @@
 class Producer::RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.joins(:product).where(products: {producer_id: current_producer.id})
   end
 
   def show

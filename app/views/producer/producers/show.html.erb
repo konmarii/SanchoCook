@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row mt-5">
+    <div><%= attachment_image_tag @producer, :image, :fill, 200, 200, format: 'jpeg' %></div>
+    <div class="col-md-8 offset-md-1">
+      <h5>生産者マイページ</h5>
+
+      <table class="table table-hover table-inverse">
+        <tr>
+          <th>会社名</th>
+          <th><%= @producer.company_name %></th>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <th><%= @producer.last_name %><%= @producer.first_name %></th>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <th><%= @producer.last_name_kana %><%= @producer.first_name_kana %></th>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <th><%= @producer.postal_code %></th>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <th><%= @producer.address %></th>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <th><%= @producer.phone_number %></th>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <th><%= @producer.email %></th>
+        </tr>
+        <tr>
+          <th>紹介文</th>
+          <th><%= @producer.introduction %></th>
+        </tr>
+      </table>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <%= link_to "編集する", edit_producer_producer_path(@producer), class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

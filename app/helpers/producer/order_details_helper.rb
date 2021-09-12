@@ -1,0 +1,2 @@
+module Producer::OrderDetailsHelper
+end

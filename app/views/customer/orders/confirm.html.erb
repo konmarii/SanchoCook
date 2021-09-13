@@ -75,8 +75,19 @@
     <%= f.hidden_field :total_payment, :value => @sum+800 %>
     <%= f.hidden_field :order_status, :value => :payment_waiting %>
     <%= f.hidden_field :payment_method, :value => @order.payment_method %>
-    <div class="col text-center">
-      <%= f.submit '注文を確定する', class: "btn btn-info btn-lg" %>
-    </div>
+    <% if @order.payment_method == "credit_card" %>
+      <div class="col text-center">
+        <script
+          type="text/javascript"
+          src="https://checkout.pay.jp"
+          class="payjp-button"
+          data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
+        </script>
+      </div>
+    <% elsif @order.payment_method == "bank_transfer" %>
+      <div class="col text-center">
+        <%= f.submit '注文を確定する', class: "btn btn-info btn-lg" %>
+      </div>
+    <% end %>
   <% end %>
 </div>

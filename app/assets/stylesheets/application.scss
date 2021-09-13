@@ -14,10 +14,11 @@
  *= require_self
  */
 @import "bootstrap";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap');
+
 
 * {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 /* フッターの設定
@@ -28,7 +29,7 @@ html {
 }
 body {
   margin-bottom: 60px;
-  background-image: image-url("carrot.jpg");
+  // background-image: image-url("carrot.jpg");
 }
 .footer {
   position: absolute;

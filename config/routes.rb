@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   resources :products, module: :customer, only: [:index, :show]
 
-  resources :recipes, module: :customer, only: [:show]
+  resources :recipes, module: :customer, only: [:index, :show]
 
   delete '/cart_products/destroy_all', to: 'customer/cart_products#destroy_all'
   resources :cart_products, module: :customer, only: [:index, :update, :destroy]

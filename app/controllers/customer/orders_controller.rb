@@ -58,6 +58,15 @@ class Customer::OrdersController < ApplicationController
   def authenticate_customer
     @customer != current_customer
   end
+  
+  def pay
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @order.tatal_payment,
+      card: params['payjp-token'],
+      currency: 'jpy'
+    )
+  end
 
   private
 

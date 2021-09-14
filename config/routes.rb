@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   get '/my_page', to: 'customer/customers#show'
   get '/customers/:id/unsubscribe', to: 'customer/customers#unsubscribe', as: 'customer_unsubscribe'
   patch '/customers/withdraw', to: 'customer/customers#withdraw'
+  
+  resources :messages, module: :customer, only: [:show, :create]
 
   namespace :producer do
     root to: 'homes#top'
@@ -60,6 +62,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update] do
       patch '/order_details/:id', to: 'order_details#update', as: 'details'
     end
+    
+    resources :messages, only: [:index, :show, :create]
 
   end
 

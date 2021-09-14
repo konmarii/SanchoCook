@@ -1,0 +1,2 @@
+module Producer::MessagesHelper
+end

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <h2><%= @producer.last_name %><%= @producer.first_name %>さんへのお問い合わせ</h2>
+
+            <table class="message table">
+              <thead>
+                <tr>
+                  <th style="text-align: left; font-size: 20px;"><%= @producer.last_name %><%= @producer.first_name %></th>
+                  <th style="text-align: right; font-size: 20px;"><%= current_customer.last_name %><%= current_customer.first_name %></th>
+                </tr>
+              </thead>
+              <tbody class="messages">
+                <% @messages.each do |message| %>
+                  <% if message.customer_id == nil %>
+                    <tr>
+                      <th>
+                        <p style="text-align: left;"><%= message.message %></p>
+                      </th>
+                      <th></th>
+                    </tr>
+                  <% else %>
+                    <tr>
+                      <th></th>
+                      <th>
+                        <p style="text-align: right;"><%= message.message %></p>
+                      </th>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+            <div class="row justify-content-end">
+              <div>
+                <%= form_with model: @message, remote: true do |f| %>
+                  <%= f.text_field :message, size: 60 %>
+                  <%= f.hidden_field :room_id, :value => @room.id %>
+              </div>
+              <div>
+                <%= f.submit "SEND", class:"btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+</div>

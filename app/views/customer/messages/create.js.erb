@@ -1,2 +1,2 @@
-$('.messages').append("<p style='text-align: right;'><%= @message.message %></p>");
-$('input[type=text]').val("")
+$('#messages').html("<%= j(render 'message', messages: @messages) %>");
+$('#text').val("")

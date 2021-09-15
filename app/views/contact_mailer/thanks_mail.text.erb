@@ -1,0 +1,16 @@
+==========================
+  注文確定のお知らせ
+==========================
+  <%= @customer %> 様
+
+  ご注文ありがとうございました。
+  商品の到着までしばらくお待ちください。
+
+　注文内容
+　<%= @order.delivery_name %>
+　<%= @order.delivery_postal_code %>
+　<%= @order.delivery_address %>
+  ￥<%= @order.total_payment %>
+  <%= @order.payment_method %>
+
+  今後とも よろしくお願いいたします。

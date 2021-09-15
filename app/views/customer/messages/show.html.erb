@@ -10,8 +10,26 @@
                   <th style="text-align: right; font-size: 20px;"><%= current_customer.last_name %><%= current_customer.first_name %></th>
                 </tr>
               </thead>
-              <tbody id="messages">
-                <%= render "message", messages: @messages %>
+              
+              <tbody class="messages">
+                <%#= render "message", messages: @messages %>
+                <% @messages.each do |message| %>
+                  <% if message.customer_id == nil %>
+                    <tr>
+                      <th>
+                        <p style="text-align: left;"><%= message.message %></p>
+                      </th>
+                      <th></th>
+                    </tr>
+                  <% else %>
+                    <tr>
+                      <th></th>
+                      <th>
+                        <p style="text-align: right;"><%= message.message %></p>
+                      </th>
+                    </tr>
+                  <% end %>
+                <% end %>
               </tbody>
               
             </table>

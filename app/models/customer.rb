@@ -6,4 +6,8 @@ class Customer < ApplicationRecord
 
   has_many :orders
   has_many :cart_products
+  
+  has_many :entries
+  has_many :rooms, through: :entries
+  has_many :messages
 end

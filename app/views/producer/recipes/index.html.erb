@@ -1,17 +1,20 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
-      <h2>レシピ一覧</h2>
-      <% @recipes.each do |recipe| %>
-        <div class="card" style="width: 18rem;">
-          <%= attachment_image_tag recipe, :image, :fill, 550, 400, format: 'jpeg' %>
-          <div class="card-body">
-            <div class="card-title"><%= recipe.name %></div>
-            <p class="card-text"><%= recipe.introduction %></p>
-            <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-primary" %>
+    <div class="col-md-12 offset-md-1">
+    <h2>レシピ一覧</h2>
+    <h2>（<%= @recipes.count %>件）</h2>
+      <div class="d-flex align-content-around flex-wrap">
+        <% @recipes.each do |recipe| %>
+          <div class="card" style="width: 15rem;">
+            <%= attachment_image_tag recipe, :image, :fill, 200, 150, format: 'jpeg' %>
+            <div class="card-body">
+              <div class="card-title"><%= recipe.name %></div>
+              <p class="card-text"><%= recipe.introduction %></p>
+              <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-primary" %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    </div>    
   </div>
 </div>

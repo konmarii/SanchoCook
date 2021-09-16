@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
+    <%= render "producer_list", producer: @producer %>
+    <div class="col-md-8">
     <h2>商品詳細</h2>
       <div class="product-box col-9 d-flex flex-row">
         <%= attachment_image_tag @product, :image, :fill, 550, 400, format: 'jpeg' %>
@@ -25,6 +26,13 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <h3>この商品を使ったレシピ一覧</h3>
       <% @recipes.each do |recipe| %>
         <div class="card" style="width: 18rem;">
           <%= attachment_image_tag recipe, :image, :fill, 550, 400, format: 'jpeg' %>

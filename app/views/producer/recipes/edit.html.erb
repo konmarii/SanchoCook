@@ -1,12 +1,10 @@
 <div class="container">
   <div class="row mt-5">
-      <h2>レシピ詳細登録</h2>
-      <div class="container">
+    <h2>レシピ詳細登録</h2>
+    <div class="container-fluid">
         <div class="row">
-          <div class="col-md-8 offset-md-1">
-
+          <div class="col-md-6">
             <%= form_with model: [:producer, @recipe], local:true do |f| %>
-
               <table  class="table table-borderless">
                 <tbody>
                   <tr>
@@ -27,91 +25,24 @@
                       <%= f.text_area :introduction, placeholder: "ここに紹介文を記述します", class:"form-control" %>
                     </td>
                   </tr>
-
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                    <%= f.submit 'レシピ登録', class: "btn btn-success"  %>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
+              <div class="d-flex justify-content-center">
+                <%= f.submit 'レシピ登録', class: "btn btn-success"  %>  
+              </div>
             <% end %>
-            <%= form_with model: [:producer, @ingredient], local:true do |f| %>
-
-              <table  class="table table-borderless">
-                <thread>
-                  <tr>
-                    <td>材料名</td>
-                    <td>数量</td>
-                    <td>単位</td>
-                  </tr>
-                </thread>
-                <tbody>
-                  <tr>
-                    <td>
-                      <%= f.text_field :name, placeholder: "材料名", class:"form-control" %>
-                    </td>
-                    <td >
-                      <%= f.text_field :amount, placeholder: "数量", class:"form-control"%>
-                    </td>
-                    <td>
-                      <%= f.text_field :unit, placeholder: "単位", class:"form-control" %>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                    <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-                    <%= f.submit '材料を登録', class: "btn btn-success"  %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            <% end %>
-
-            <% @ingredients.each do |ingredient| %>
-              <%= ingredient.name %>
-            <% end %>
-
-            <%= form_with model: [:producer, @recipe_detail], local:true do |f| %>
-
-              <table  class="table table-borderless">
-                <thread>
-                  <tr>
-                    <td>詳細画像</td>
-                    <td>説明</td>
-                  </tr>
-                </thread>
-                <tbody>
-                  <tr>
-                    <td>
-                      <%= f.attachment_field :image, class:"form-control-file" %>
-                    </td>
-                    <td>
-                      <%= f.text_field :explanation, placeholder: "説明文", class:"form-control" %>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                    <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-                    <%= f.submit '手順を登録', class: "btn btn-success"  %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            <% end %>
-
-            <% @recipe_details.each do |recipe_detail| %>
-              <%= recipe_detail.explanation %>
-            <% end %>
-
+          </div>
+            
+          <div class="col-md-6">
+            <%= render 'ingredients', ingredients: @ingredients, ingredient: @ingredient, recipe: @recipe %>
           </div>
         </div>
-      </div>
+              
+        <div class="col-md-4">
+          <%= render 'recipe_details', recipe_details: @recipe_details, recipe_detail: @recipe_detail, recipe: @recipe %>
+        </div>
+                  
     </div>
   </div>
 </div>
+

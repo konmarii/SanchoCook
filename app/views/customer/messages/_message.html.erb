@@ -1,0 +1,17 @@
+<% messages.each do |message| %>
+  <% if message.customer_id == nil %>
+    <tr>
+      <th>
+        <p style="text-align: left;"><%= message.message %></p>
+      </th>
+      <th></th>
+    </tr>
+  <% else %>
+    <tr>
+      <th></th>
+      <th>
+        <p style="text-align: right;"><%= message.message %></p>
+      </th>
+    </tr>
+  <% end %>
+<% end %>

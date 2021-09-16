@@ -38,6 +38,8 @@ class Customer::OrdersController < ApplicationController
         )
       end
       render :thanks
+      @customer = current_customer
+      ContactMailer.thanks_mail(@customer, @order).deliver
       cart_products = CartProduct.where(customer_id: current_customer.id)
       cart_products.destroy_all
     end

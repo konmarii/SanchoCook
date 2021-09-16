@@ -1,2 +1,53 @@
-<h1>Customer::Recipes#show</h1>
-<p>Find me in app/views/customer/recipes/show.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div><%= attachment_image_tag @recipe, :image, :fill, 200, 200, format: 'jpeg' %></div>
+    <div class="col-md-8 offset-md-1">
+      <h5>レシピ詳細</h5>
+
+      <table class="table table-hover table-inverse">
+        <tr>
+          <th>レシピ名</th>
+          <th><%= @recipe.name %></th>
+        </tr>
+        <tr>
+          <th>レシピ紹介</th>
+          <th><%= @recipe.introduction %></th>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+    
+<div class="container">
+  <div class="row mt-5">    
+    <div class="col-md-4">
+      <table class="table table-hover table-inverse">
+        <tr>
+          <th>材料</th>
+        </tr>
+        <% @ingredients.each do |ingredient| %>
+          <tr>
+            <th><%= ingredient.name %></th>
+            <th><%= ingredient.amount %><%= ingredient.unit %></th>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-5"> 
+    <div class="d-flex align-content-around flex-wrap">
+      <% @recipe_details.each do |recipe_detail| %>
+        <div class="card" style="width: 15rem;">
+          <%= attachment_image_tag recipe_detail, :image, :fill, 200, 150, format: 'jpeg' %>
+          <div class="card-body">
+            <p class="card-text"><%= recipe_detail.id %>. <%= recipe_detail.explanation %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

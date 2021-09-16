@@ -1,0 +1,109 @@
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <%= link_to 'ロゴ画像', "/", class:"navbar-brand p-3" %>
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <% if customer_signed_in? %>
+          <div class="text-center">
+            ようこそ
+            <%= current_customer.last_name %>
+            さん
+          </div>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <div class="social">
+                <%= link_to 'マイページ', my_page_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '商品一覧', products_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'レシピ一覧', recipes_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'カート', cart_products_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link' %>
+              </div>
+            </li>
+          </ul>
+        <% elsif producer_signed_in? %>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <div class="social">
+                <%= link_to '生産者マイページ', producer_my_page_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item active">
+              <div class="social">
+                <%= link_to 'お問い合わせ一覧', producer_messages_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item active">
+              <div class="social">
+                <%= link_to '商品一覧', producer_products_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '注文履歴一覧', producer_root_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'レシピ一覧', producer_recipes_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'ログアウト', destroy_producer_session_path, method: :delete, class: 'nav-link' %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'About', about_path, class: 'nav-link text-dark' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '商品一覧', products_path, class: 'nav-link text-dark' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'レシピ一覧', recipes_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '新規登録', new_customer_registration_path, class: 'nav-link text-dark' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'ログイン', customer_session_path, class: 'nav-link text-dark' %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </nav>
+</header>

@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   patch '/customers/withdraw', to: 'customer/customers#withdraw'
   
   resources :messages, module: :customer, only: [:show, :create]
+  
+  get "search" => "customer/searches#search"
 
   namespace :producer do
     root to: 'homes#top'

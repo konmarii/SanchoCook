@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_directory .
  *= require_self
  */
 @import "bootstrap";
@@ -143,11 +143,11 @@ footer {
   
   #vegetables{
     .vegetable1 {
-      background-image: image-url("vegetable1.jpg");
+      background-image: image-url("vegetable7.jpg");
       background-size : cover ;
     }
     .vegetable2 {
-      background-image: image-url("vegetable2.jpg");
+      background-image: image-url("vegetable8.jpg");
       background-size : cover ;
     }
     .vegetable3 {

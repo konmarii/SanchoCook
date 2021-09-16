@@ -9,9 +9,16 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render 'layouts/header' %>
+  <body class="d-flex flex-column vh-100">
+    <% if request.path == '/' %>
+      <%= render 'layouts/top_header' %>
+    <% else %>
+      <%= render 'layouts/else_header' %>
+    <% end %>
     <%= yield %>
-    <%= render 'layouts/footer' %>
+    
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
 </html>

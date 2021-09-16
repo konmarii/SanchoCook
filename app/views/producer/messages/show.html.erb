@@ -30,11 +30,16 @@
                 <% end %>
               </tbody>
             </table>
-
-            <%= form_with model: [:producer, @message], remote: true do |f| %>
-              <%= f.text_field :message %>
-              <%= f.hidden_field :room_id, :value => @room.id %>
-              <%= f.submit "SEND", class:"btn btn-sm btn-success chat-btn" %>
+            
+            <div class="row justify-content-end">
+              <div id="text">
+                <%= form_with model: [:producer, @message], remote: true do |f| %>
+                  <%= f.text_field :message %>
+                  <%= f.hidden_field :room_id, :value => @room.id %>
+              </div>
+              <div>  
+                <%= f.submit "SEND", class:"btn btn-sm btn-success chat-btn" %>
+              </div>
             <% end %>
         </div>
     </div>

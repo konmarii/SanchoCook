@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_derectory .
- *= require_skippr
+ *= require skippr
  *= require_self
  */
 @import "bootstrap";
@@ -126,8 +126,8 @@ footer {
   }
   .box-text {
     position: absolute;
-    top: 35%;
-    left: 30%;
+    top: 30%;
+    left: 27%;
     z-index: 9999;
 
     h1{

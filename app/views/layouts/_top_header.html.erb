@@ -1,7 +1,7 @@
 <header class="shadow-sm">
   <div id="box">
     <div class="box-text">
-      <%= link_to 'ロゴ画像', "/", class:"navbar-brand p-3" %>
+      <%= link_to image_tag("LOGO4.PNG", width: 600), "/", class:"navbar-brand p-3" %>
     </div>
     <div id="vegetables">
       <div class="vegetable1"></div>
@@ -11,7 +11,7 @@
       <div class="vegetable5"></div>
       <div class="vegetable6"></div>
     </div>
-    <%= link_to '', "/", class:"navbar-brand p-3"%>
+    <%= link_to image_tag("LOGO5.PNG", width: 150), "/", class:"navbar-brand p-3"%>
     <% if customer_signed_in? %>
       <div id="welcome-name">
         ようこそ

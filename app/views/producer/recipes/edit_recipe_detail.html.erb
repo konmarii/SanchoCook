@@ -1,22 +1,7 @@
 <div class="container">
   <div class="row mt-5">
-    <div><%= attachment_image_tag @recipe, :image, :fill, 200, 150, format: 'jpeg' %></div>
-    <div class="col-md-5 offset-md-1">
-      <h5>レシピ詳細</h5>
-
-      <table class="table table-hover table-inverse">
-        <tr>
-          <th>レシピ名</th>
-          <th><%= @recipe.name %></th>
-        </tr>
-        <tr>
-          <th>レシピ紹介</th>
-          <th><%= @recipe.introduction %></th>
-        </tr>
-      </table>
-    </div>
-    <div class="col-md-3">
-      <h5>材料</h5>
+    <h2>STEP 2 レシピ詳細編集</h2>
+    <div class="container-fluid">
       <table class="table table-hover table-inverse">
         <% @ingredients.each do |ingredient| %>
           <tr>
@@ -25,14 +10,15 @@
           </tr>
         <% end %>
       </table>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-12">
-      <h5>作り方</h5>
+      <h4>材料登録</h4>
+      <div class="col-md-12">
+        <%= render 'ingredients', ingredients: @ingredients, ingredient: @ingredient, recipe: @recipe %>
+      </div>
+        
+      <h4>手順登録</h4>
+      <div class="col-md-12">
+        <%= render 'recipe_details', recipe_details: @recipe_details, recipe_detail: @recipe_detail, recipe: @recipe %>
+      </div>
       <div class="d-flex align-content-around flex-wrap">
         <% @recipe_details.each do |recipe_detail| %>
           <div><%= recipe_detail.id %></div>
@@ -43,6 +29,10 @@
             </div>
           </div>
         <% end %>
+      </div>
+      
+      <div class="d-grid gap-2 d-md-flex justify-content-center mt-5">
+        <%= link_to "STEP 3 レシピ紹介登録へ", producer_edit_recipe_introduction_path(@recipe), class: "btn btn-outline-secondary" %>
       </div>
     </div>
   </div>

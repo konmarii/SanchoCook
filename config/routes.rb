@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   resources :messages, module: :customer, only: [:show, :create]
   
   get "search" => "customer/searches#search"
+  
+  resources :messages, module: :customer, only: [:show, :create]
+  
+  get "search" => "customer/searches#search"
 
   namespace :producer do
     root to: 'homes#top'
@@ -55,7 +59,10 @@ Rails.application.routes.draw do
 
     resources :products
 
-    resources :recipes
+    resources :recipes, only: [:new, :index, :show, :destroy, :update]
+    get '/edit_recipe_detail/:id', to: 'recipes#edit_recipe_detail', as: 'edit_recipe_detail'
+    get '/edit_recipe/:id', to: 'recipes#edit_recipe_introduction', as: 'edit_recipe_introduction'
+
 
     resources :ingredients, only: [:edit, :create, :update, :destroy]
 
@@ -64,6 +71,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update] do
       patch '/order_details/:id', to: 'order_details#update', as: 'details'
     end
+    
+    resources :messages, only: [:index, :show, :create]
     
     resources :messages, only: [:index, :show, :create]
 

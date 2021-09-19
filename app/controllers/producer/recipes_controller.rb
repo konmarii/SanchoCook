@@ -14,7 +14,16 @@ class Producer::RecipesController < ApplicationController
     @products = Product.where(producer_id: current_producer.id)
   end
 
-  def edit
+  def edit_recipe_detail
+    @recipe = Recipe.find(params[:id])
+    @ingredient = Ingredient.new
+    @recipe_detail = RecipeDetail.new
+    @ingredients = Ingredient.where(recipe_id: @recipe.id)
+    @recipe_details = RecipeDetail.where(recipe_id: @recipe.id)
+  end
+  
+  
+  def edit_recipe_introduction
     @recipe = Recipe.find(params[:id])
     @ingredient = Ingredient.new
     @recipe_detail = RecipeDetail.new

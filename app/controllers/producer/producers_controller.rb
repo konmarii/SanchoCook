@@ -1,5 +1,6 @@
 class Producer::ProducersController < ApplicationController
   before_action :authenticate_producer!
+  
   def show
     @producer = Producer.find(current_producer.id)
   end
@@ -11,7 +12,7 @@ class Producer::ProducersController < ApplicationController
   def update
     @producer = Producer.find(current_producer.id)
     @producer.update(producer_params)
-    redirect_to producer_my_page_path
+    redirect_to producer_my_page_path, success: "生産者情報を更新しました。"
   end
 
   def correct_producer

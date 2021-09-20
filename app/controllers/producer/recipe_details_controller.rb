@@ -4,8 +4,7 @@ class Producer::RecipeDetailsController < ApplicationController
   
   def permitted_producer
     if current_producer.is_permitted != true 
-      flash[:notice]="権限がありません"
-      redirect_to producer_root_path
+      redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
     end
   end
   
@@ -14,7 +13,7 @@ class Producer::RecipeDetailsController < ApplicationController
     @recipe_detail = RecipeDetail.new(recipe_detail_params)
     @recipe = params[:id]
     if @recipe_detail.save
-      redirect_to request.referer
+      redirect_to request.referer, success: "作り方を登録しました。"
     else
       render :edit
     end

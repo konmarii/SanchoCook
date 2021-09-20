@@ -12,7 +12,7 @@ class Customer::CustomersController < ApplicationController
   def update
     customer = Customer.find(current_customer.id)
     customer.update(customer_params)
-    redirect_to my_page_path
+    redirect_to my_page_path, success: "会員情報を更新しました。"
   end
 
   def unsubscribe
@@ -23,7 +23,7 @@ class Customer::CustomersController < ApplicationController
     @customer = Customer.find(current_customer.id)
     @customer.update(is_deleted: true)
     reset_session
-    redirect_to root_path
+    redirect_to root_path, success: "退会しました。ありがとうございました。"
   end
 
   private

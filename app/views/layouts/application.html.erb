@@ -11,11 +11,16 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <% if request.path == '/' %>
-      <%= render 'layouts/top_header' %>
-    <% else %>
-      <%= render 'layouts/else_header' %>
-    <% end %>
+    <header>
+      <% if request.path == '/' %>
+        <%= render 'layouts/top_header' %>
+      <% else %>
+        <%= render 'layouts/else_header' %>
+      <% end %>
+    </header>
+    
+    <%= render 'layouts/flash' %>
+    
     <%= yield %>
     
     <footer>

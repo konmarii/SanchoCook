@@ -4,8 +4,7 @@ class Producer::MessagesController < ApplicationController
   
   def permitted_producer
     if current_producer.is_permitted != true 
-      flash[:notice]="権限がありません"
-      redirect_to producer_root_path
+      redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
     end
   end
   

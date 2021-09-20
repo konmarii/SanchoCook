@@ -1,4 +1,6 @@
 class Customer::CartProductsController < ApplicationController
+  before_action :authenticate_customer!
+  
   def index
     @cart_products = CartProduct.where(customer_id: current_customer.id)
     @numbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10

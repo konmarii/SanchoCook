@@ -1,4 +1,5 @@
 class Producer::ProducersController < ApplicationController
+  before_action :authenticate_producer!
   def show
     @producer = Producer.find(current_producer.id)
   end

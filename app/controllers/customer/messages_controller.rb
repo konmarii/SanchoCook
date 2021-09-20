@@ -1,4 +1,6 @@
 class Customer::MessagesController < ApplicationController
+  before_action :authenticate_customer!
+  
   def show
     @producer = Producer.find(params[:id])
     rooms = current_customer.entries.pluck(:room_id)

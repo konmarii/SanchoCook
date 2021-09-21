@@ -2,9 +2,14 @@ class Recipe < ApplicationRecord
   belongs_to :product
   has_many :ingredients
   has_many :recipe_details
+  has_many :favorites
 
   attachment :image
   
+  def favorited_by?(current_customer)
+    favorites.where(customer_id: current_customer.id).exists?
+  end  
+
   def self.looks(search, word)
     if search == "perfect_match"
       @recipe = Recipe.where("name LIKE?", "#{word}")

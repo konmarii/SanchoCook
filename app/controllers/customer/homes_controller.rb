@@ -1,4 +1,5 @@
 class Customer::HomesController < ApplicationController
+  
   def top
     @recipes = Recipe.all
     @products = Product.all

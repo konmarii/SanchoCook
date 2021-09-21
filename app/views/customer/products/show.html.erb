@@ -22,6 +22,9 @@
                 <%= f.submit 'カートに入れる', class:"btn btn-outline-secondary" %>
               <% end %>
               </div>
+              
+              <%= render 'customer/favorites/favorite_products', product: @product %>
+              
             </div>
           </div>
         </div>
@@ -39,7 +42,7 @@
           <div class="card-body">
             <div class="card-title"><%= recipe.name %></div>
             <p class="card-text"><%= recipe.introduction %></p>
-            <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-primary" %>
+            <%= link_to 'レシピ詳細へ', recipe_path(recipe), class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>

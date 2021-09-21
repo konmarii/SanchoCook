@@ -48,6 +48,15 @@ Rails.application.routes.draw do
   resources :messages, module: :customer, only: [:show, :create]
   
   get "search" => "customer/searches#search"
+  
+  post '/products/:product_id/favorites' => "customer/favorites#create_product_favorite", as: 'create_product_favorite'
+  delete '/products/:product_id/favorites' => "customer/favorites#destroy_product_favorite", as: 'destroy_product_favorite'
+  
+  post '/recipes/:recipe_id/favorites' => "customer/favorites#create_recipe_favorite", as: 'create_recipe_favorite'
+  delete '/recipes/:recipe_id/favorites' => "customer/favorites#destroy_recipe_favorite", as: 'destroy_recipe_favorite'
+  
+  # post '/producers/:producer_id/favorites' => "customer/favorites#create"
+  # delete '/producers/:producer_id/favorites' => "customer/favorites#destroy"
 
   namespace :producer do
     root to: 'homes#top'

@@ -1,4 +1,9 @@
 class Customer::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+  def index
+    @orders = Order.where(customer_id: current_customer.id)
+  end
+  
   def new
     @order = Order.new
     @cart_products = CartProduct.where(customer_id: current_customer.id)

@@ -1,0 +1,11 @@
+<div id="favorite-<%= recipe.id %>">
+  <% if recipe.favorited_by?(current_customer) %>
+    <%= link_to  destroy_recipe_favorite_path(recipe), method: :delete, remote: true do %>
+      ♥お気に入りから削除する
+    <% end %>
+  <% else %>
+    <%= link_to create_recipe_favorite_path(recipe), method: :post, remote: true do %>
+      ♡お気に入りに追加する
+    <% end %>
+  <% end %>
+</div>

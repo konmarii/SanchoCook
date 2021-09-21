@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
+  add_flash_types :success, :info, :warning, :danger
 
   # 新規登録後のリダイレクト先
   def after_sign_up_path_for(resource_or_scope)

@@ -1,4 +1,5 @@
 class Customer::SearchesController < ApplicationController
+  before_action :authenticate_customer!, except: [:index]
   def search
     @range = params[:range]
 

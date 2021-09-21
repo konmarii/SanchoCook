@@ -1,4 +1,13 @@
 class Producer::RecipesController < ApplicationController
+  before_action :authenticate_producer!
+  before_action :permitted_producer
+  
+  def permitted_producer
+    if current_producer.is_permitted != true 
+      redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
+    end
+  end
+  
   def index
     @recipes = Recipe.joins(:product).where(products: {producer_id: current_producer.id})
   end
@@ -36,7 +45,7 @@ class Producer::RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.product_id = @product.id
     if @recipe.save
-      redirect_to edit_producer_recipe_path(@recipe.id)
+      redirect_to edit_producer_recipe_path(@recipe.id), success: "レシピ登録が完了しました。"
     else
       redirect_to root_path
     end
@@ -45,7 +54,7 @@ class Producer::RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      redirect_to producer_recipes_path
+      redirect_to producer_recipes_path, success: "レシピを更新しました。"
     else
       render :edit
     end

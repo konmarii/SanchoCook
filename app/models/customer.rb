@@ -10,5 +10,6 @@ class Customer < ApplicationRecord
   has_many :entries
   has_many :rooms, through: :entries
   has_many :messages
-  has_many :favorites
+  has_many :favorite_products
+  has_many :favorite_recipes
 end

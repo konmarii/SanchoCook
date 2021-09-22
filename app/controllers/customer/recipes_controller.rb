@@ -6,6 +6,7 @@ class Customer::RecipesController < ApplicationController
   
   def show
     @recipe = Recipe.find(params[:id])
+    @favorite_recipe = FavoriteRecipe.where(customer_id: current_customer.id, recipe_id: @recipe.id)
     @ingredients = Ingredient.where(recipe_id: @recipe.id)
     @recipe_details = RecipeDetail.where(recipe_id: @recipe.id)    
   end

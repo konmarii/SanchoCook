@@ -2,12 +2,12 @@ class Recipe < ApplicationRecord
   belongs_to :product
   has_many :ingredients
   has_many :recipe_details
-  has_many :favorites
+  has_many :favorite_recipes
 
   attachment :image
   
   def favorited_by?(current_customer)
-    favorites.where(customer_id: current_customer.id).exists?
+    favorite_recipes.where(customer_id: current_customer.id).exists?
   end  
 
   def self.looks(search, word)

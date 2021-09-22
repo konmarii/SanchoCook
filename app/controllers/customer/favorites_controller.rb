@@ -1,30 +1,18 @@
 class Customer::FavoritesController < ApplicationController
 
   def index
+    @favorite_products = FavoriteProduct.where(customer_id: current_customer.id)
+    @products = []
+    @favorite_products.each do |favorite_product|
+      @products << favorite_product.product
+    end
+    @products.flatten!
+    @favorite_recipes = FavoriteRecipe.where(customer_id: current_customer.id)
+    @recipes = []
+    @favorite_recipes.each do |favorite_recipe|
+      @recipes << favorite_recipe.recipe
+    end
+    @recipes.flatten!
   end
 
-  def create_product_favorite
-    @product = Product.find(params[:product_id])
-    favorite = current_customer.favorites.new(product_id: @product.id)
-    favorite.save
-  end
-  
-  def destroy_product_favorite
-    @product = Product.find(params[:product_id])
-    favorite = current_customer.favorites.find_by(product_id: @product.id)
-    favorite.destroy
-  end
-  
-  def create_recipe_favorite
-    @recipe = Recipe.find(params[:recipe_id])
-    favorite = current_customer.favorites.new(recipe_id: @recipe.id)
-    favorite.save
-  end
-  
-  def destroy_recipe_favorite
-    @recipe = Recipe.find(params[:recipe_id])
-    favorite = current_customer.favorites.find_by(recipe_id: @recipe.id)
-    favorite.destroy
-  end
-  
 end

@@ -16,6 +16,7 @@
  */
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 
 * {
@@ -30,7 +31,6 @@ html {
 }
 body {
   margin-bottom: 60px;
-  // background-image: image-url("carrot.jpg");
 }
 
 footer {
@@ -92,6 +92,12 @@ footer {
   font-weight: lighter;
   text-size: 30px;
   padding: 0 400px;
+}
+
+.search_form {
+  position: absolute;
+  top: 15%;
+  left: 66%;
 }
 
 #box{
@@ -170,5 +176,94 @@ footer {
     }
   }
 }
+/*
+-------------------------------------------------- */
+
+/*
+-------------------------------------------------- */
+/* aboutの設定
+-------------------------------------------------- */
+.about_image {
+  background-image: image-url("about3.jpg");
+  background-size : cover ;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+}
+#about_message {
+  line-hight: 30px;
+}
+#about_vegetables_right {
+  .about_vegetable1 {
+    background-image: image-url("about_vegetable1");
+    background-size : cover ;
+    width:  180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: left top;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+  }
+  .about_vegetable2 {
+    background-image: image-url("about_vegetable2");
+    background-size : cover ;
+    width:  180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: left top;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+  }
+  .about_vegetable3 {
+    background-image: image-url("about_vegetable3");
+    background-size : cover ;
+    width:  180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: left top;
+    position: absolute;
+    top: 90%;
+    left: 30%;
+  }
+}
+#about_vegetables_left {
+  .about_vegetable4 {
+    background-image: image-url("about_vegetable4");
+    background-size : cover ;
+    width:  180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: left top;
+    position: absolute;
+    top: 10%;
+    right: 30%;
+  }
+  .about_vegetable5 {
+    background-image: image-url("about_vegetable5");
+    background-size : cover ;
+    width:  180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: left top;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+  }
+  .about_vegetable6 {
+    background-image: image-url("about_vegetable6");
+    background-size : cover ;
+    width:  180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: left top;
+    position: absolute;
+    top: 90%;
+    right: 30%;
+  }
+}
+
 /*
 -------------------------------------------------- */

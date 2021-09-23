@@ -8,10 +8,10 @@ class Product < ApplicationRecord
   has_many :cart_products
   has_many :order_products
   has_many :recipes
-  has_many :favorites
+  has_many :favorite_products
   
   def favorited_by?(current_customer)
-    favorites.where(customer_id: current_customer.id).exists?
+    favorite_products.where(customer_id: current_customer.id).exists?
   end
 
   def include_tax

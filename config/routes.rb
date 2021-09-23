@@ -28,9 +28,13 @@ Rails.application.routes.draw do
   post '/orders/confirm', to: 'customer/orders#confirm'
   get '/orders/thanks', to: 'customer/orders#thanks'
 
-  resources :products, module: :customer, only: [:index, :show]
+  resources :products, module: :customer, only: [:index, :show] do
+    resources :favorite_products, only: [:create, :destroy]
+  end
 
-  resources :recipes, module: :customer, only: [:index, :show]
+  resources :recipes, module: :customer, only: [:index, :show] do
+    resources :favorite_recipes, only: [:create, :destroy]
+  end
 
   delete '/cart_products/destroy_all', to: 'customer/cart_products#destroy_all'
   resources :cart_products, module: :customer, only: [:index, :update, :destroy]
@@ -49,14 +53,7 @@ Rails.application.routes.draw do
   
   get "search" => "customer/searches#search"
   
-  post '/products/:product_id/favorites' => "customer/favorites#create_product_favorite", as: 'create_product_favorite'
-  delete '/products/:product_id/favorites' => "customer/favorites#destroy_product_favorite", as: 'destroy_product_favorite'
-  
-  post '/recipes/:recipe_id/favorites' => "customer/favorites#create_recipe_favorite", as: 'create_recipe_favorite'
-  delete '/recipes/:recipe_id/favorites' => "customer/favorites#destroy_recipe_favorite", as: 'destroy_recipe_favorite'
-  
-  # post '/producers/:producer_id/favorites' => "customer/favorites#create"
-  # delete '/producers/:producer_id/favorites' => "customer/favorites#destroy"
+  resources :favorites, module: :customer, only: [:index]
 
   namespace :producer do
     root to: 'homes#top'

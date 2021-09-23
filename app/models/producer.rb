@@ -10,5 +10,5 @@ class Producer < ApplicationRecord
   has_many :entries
   has_many :rooms, through: :entries
   has_many :messages
-  has_many :favorites
+
 end

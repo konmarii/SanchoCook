@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_20_235810) do
+ActiveRecord::Schema.define(version: 2021_09_22_001040) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -74,10 +74,15 @@ ActiveRecord::Schema.define(version: 2021_09_20_235810) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "favorites", force: :cascade do |t|
+  create_table "favorite_products", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "product_id"
-    t.integer "producer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_recipes", force: :cascade do |t|
+    t.integer "customer_id"
     t.integer "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

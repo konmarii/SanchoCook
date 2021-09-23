@@ -1,0 +1,1 @@
+$("#favorite-<%= @recipe.id %>").html("<%= j(render 'customer/favorite_recipes/favorite_recipes', recipe: @recipe, favorite_recipe: nil) %>");

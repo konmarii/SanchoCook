@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :customer do
+    get 'recipe_comments/create'
+    get 'recipe_comments/destroy'
+  end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -34,6 +38,7 @@ Rails.application.routes.draw do
 
   resources :recipes, module: :customer, only: [:index, :show] do
     resources :favorite_recipes, only: [:create, :destroy]
+    resources :recipe_comments, only: [:create, :destroy]
   end
 
   delete '/cart_products/destroy_all', to: 'customer/cart_products#destroy_all'

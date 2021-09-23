@@ -12,4 +12,5 @@ class Customer < ApplicationRecord
   has_many :messages
   has_many :favorite_products
   has_many :favorite_recipes
+  has_many :recipe_comments
 end

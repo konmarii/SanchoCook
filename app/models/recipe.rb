@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients
   has_many :recipe_details
   has_many :favorite_recipes
+  has_many :recipe_comments
 
   attachment :image
   

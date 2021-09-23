@@ -50,5 +50,16 @@
       </div>
     </div>
   </div>
+  <div class="d-flex justify-content-center">
+    <div class="col-md-6">
+      <%= render 'customer/recipe_comments/recipe_comments', recipe: @recipe, recipe_comments: @recipe_comments %>
+      <div class="row mt-5 d-flex justify-content-center">
+        <%= form_with model: @new_recipe_comment, url: recipe_recipe_comments_path(@recipe), method: :post, remote:true do |f| %>
+          <%= f.text_field :comment, placeholder: "コメントを書く" %>
+          <%= f.submit "コメントを投稿する" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 

@@ -47,19 +47,16 @@
               <td><%= order_product.amount %></td>
               <td><%= order_product.product.tax_excluded_price %></td>
               <td>
-                <%#= form_with model: [@order, order_product], url: admin_order_details_path(@order, order_product), method: :patch, local: true do |f| %>
-                  <%#= f.select :production_status, OrderProduct.production_statuses.keys.map {|k| [I18n.t("enums.order_product.production_status.#{k}"), k]} %>
-                  <%#= f.submit "変更", class: "btn btn-success" %>
-                <%# end %>
+                <%= form_with model: [@order, order_product], url: producer_order_details_path(@order, order_product), method: :patch, local: true do |f| %>
+                  <%= f.select :harvest_status, OrderProduct.harvest_statuses.keys.map {|k| [I18n.t("enums.order_product.harvest_status.#{k}"), k]} %>
+                  <%= f.submit "変更", class: "btn btn-success" %>
+                <% end %>
               </td>
             </tr>
             <% end %>
           </tbody>
         </table>
       <!--</div>-->
-      <div class="col-4">
-        <%#= render "price" %>
-      </div>
     </div>
   </div>
 </div>

@@ -9,5 +9,14 @@ class Producer::OrderDetailsController < ApplicationController
   end
   
   def update
+    @order_product = OrderProduct.find(params[:id])
+    if @order_product.update(order_product_params)
+      redirect_to request.referer 
+    end
+  end
+  
+  private
+  def order_product_params
+    params.require(:order_product).permit(:harvest_status)
   end
 end

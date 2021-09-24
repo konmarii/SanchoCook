@@ -51,6 +51,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def thanks
+    @order = Order.find(params[:id])
   end
 
   def index
@@ -67,6 +68,7 @@ class Customer::OrdersController < ApplicationController
   end
   
   def pay
+    @order = Order.find(params[:id])
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @order.tatal_payment,

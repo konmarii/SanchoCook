@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-md-12 offset-md-1">
-    <h2>レシピ一覧</h2>
-    <h2>（<%= @recipes.count %>件）</h2>
+      <h2>レシピ一覧</h2>
+      <h2>（<%= @recipes.count %>件）</h2>
       <div class="d-flex align-content-around flex-wrap">
         <% @recipes.each do |recipe| %>
           <div class="card" style="width: 15rem;">
@@ -15,6 +15,7 @@
           </div>
         <% end %>
       </div>
+      <%= paginate @recipes %>
     </div>    
   </div>
 </div>

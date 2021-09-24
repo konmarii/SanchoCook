@@ -2,6 +2,7 @@ class Customer::OrdersController < ApplicationController
   before_action :authenticate_customer!
   def index
     @orders = Order.where(customer_id: current_customer.id)
+    @orders = Order.page(params[:page]).per(5)
   end
   
   def new
@@ -51,22 +52,16 @@ class Customer::OrdersController < ApplicationController
   end
 
   def thanks
-  end
-
-  def index
-    @orders = Order.where(customer_id: current_customer.id)
+    @order = Order.find(params[:id])
   end
 
   def show
     @order = Order.find(params[:id])
     @order_products = OrderProduct.where(order_id: params[:id])
   end
-
-  def authenticate_customer
-    @customer != current_customer
-  end
   
   def pay
+    @order = Order.find(params[:id])
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @order.tatal_payment,

@@ -25,6 +25,15 @@
             <%= @order.order_status_i18n %>
           </td>
         </tr>
+        <tr>
+          <th>配送ステータス</th>
+          <td>
+            <%= form_with model: [@order], url: producer_order_path(@order), method: :patch, local: true do |f| %>
+              <%= f.select :delivery_status, Order.delivery_statuses.keys.map {|k| [I18n.t("enums.order.delivery_status.#{k}"), k]} %>
+              <%= f.submit "変更", class: "btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
       </table>
     </div>
     <!--<div class="row">-->

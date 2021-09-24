@@ -9,7 +9,8 @@
             <th>配送先</th>
             <th>注文商品</th>
             <th>支払い金額</th>
-            <th>ステータス</th>
+            <th>注文ステータス</th>
+            <th>配送ステータス</th>
             <th>注文詳細</th>
           </tr>
         </thread>
@@ -34,6 +35,9 @@
               </td>
               <td>
                 <%= order.order_status_i18n %>
+              </td>
+              <td>
+                <%= order.delivery_status_i18n %>
               </td>
               <td>
                 <%= link_to '表示する', order_path(order), class: "btn btn-info" %>

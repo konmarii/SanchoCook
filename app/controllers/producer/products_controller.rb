@@ -10,6 +10,7 @@ class Producer::ProductsController < ApplicationController
   
   def index
     @products = Product.where(producer_id: current_producer.id)
+    @products = Product.page(params[:page]).per(10)
   end
 
   def show

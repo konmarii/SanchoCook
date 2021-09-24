@@ -10,6 +10,7 @@ class Producer::RecipesController < ApplicationController
   
   def index
     @recipes = Recipe.joins(:product).where(products: {producer_id: current_producer.id})
+    @recipes = Recipe.page(params[:page]).per(9)
   end
 
   def show

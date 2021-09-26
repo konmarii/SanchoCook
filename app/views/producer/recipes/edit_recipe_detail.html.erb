@@ -7,6 +7,7 @@
           <tr>
             <th><%= ingredient.name %></th>
             <th><%= ingredient.amount %><%= ingredient.unit %></th>
+            <th><%= link_to '材料を削除する', producer_ingredient_path(ingredient), method: :delete, class:"btn btn-outline-danger" %></th>
           </tr>
         <% end %>
       </table>
@@ -20,12 +21,12 @@
         <%= render 'recipe_details', recipe_details: @recipe_details, recipe_detail: @recipe_detail, recipe: @recipe %>
       </div>
       <div class="d-flex align-content-around flex-wrap">
-        <% @recipe_details.each do |recipe_detail| %>
-          <div><%= recipe_detail.id %></div>
+        <% @recipe_details.each do |recipe_detail, i| %>
           <div class="card" style="width: 15rem;">
             <%= attachment_image_tag recipe_detail, :image, :fill, 200, 150, format: 'jpeg' %>
             <div class="card-body">
-              <p class="card-text"><%= recipe_detail.id %>. <%= recipe_detail.explanation %></p>
+              <p class="card-text"><%= recipe_detail.explanation %></p>
+              <p><%= link_to '手順を削除する', producer_recipe_detail_path(recipe_detail), method: :delete, class:"btn btn-outline-danger" %></p>
             </div>
           </div>
         <% end %>

@@ -16,6 +16,7 @@ class Producer::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @recipes = Recipe.where(product_id: @product.id)
+    @favorites = FavoriteProduct.where(product_id: @product.id)
   end
 
   def new

@@ -19,13 +19,11 @@ class Producer::RecipeDetailsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    @recipe_detail = RecipeDetail.find(params[:id])
+    if @recipe_detail.destroy
+      redirect_to request.referer
+    end
   end
 
   private

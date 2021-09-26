@@ -1,6 +1,10 @@
 class Customer::MessagesController < ApplicationController
   before_action :authenticate_customer!
   
+  def index
+    @entries = Entry.where(customer_id: current_customer.id)
+  end
+  
   def show
     @producer = Producer.find(params[:id])
     rooms = current_customer.entries.pluck(:room_id)
@@ -37,7 +41,6 @@ class Customer::MessagesController < ApplicationController
           action: 'dm',
           visitor_is_customer: true
       )
-
       notification.save if notification.valid?
     end
   end

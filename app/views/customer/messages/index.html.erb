@@ -7,8 +7,8 @@
           <tbody>
             <tr></tr>
               <td>
-                  <%= link_to producer_message_path(entry) do %>
-                      <%= entry.customer.last_name %>
+                  <%= link_to message_path(entry) do %>
+                      <%= entry.producer.last_name %><%= entry.producer.first_name %>
                   <% end %>
               </td>
             </tr>

@@ -18,13 +18,11 @@ class Producer::IngredientsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    @ingredient = Ingredient.find(params[:id])
+    if @ingredient.destroy
+      redirect_to request.referer 
+    end
   end
 
   private

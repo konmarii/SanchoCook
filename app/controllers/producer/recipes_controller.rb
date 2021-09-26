@@ -17,6 +17,7 @@ class Producer::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ingredients = Ingredient.where(recipe_id: @recipe.id)
     @recipe_details = RecipeDetail.where(recipe_id: @recipe.id)
+    @favorites = FavoriteRecipe.where(recipe_id: @recipe.id)
   end
 
   def new

@@ -24,7 +24,20 @@ class Producer::MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.producer_id = current_producer.id
-    @message.save
+    @room = @message.room
+    if @message.save
+      @entry = Entry.find_by(room_id: @room.id)
+      notification = current_producer.active_producer_notifications.new(
+          room_id: @room.id,
+          message_id: @message.id,
+          visitor_producer_id: current_producer.id,
+          visited_customer_id: @entry.customer_id,
+          checked: false,
+          action: 'dm',
+          visitor_is_customer: false
+      )
+      notification.save if notification.valid?
+    end
   end
   
   private

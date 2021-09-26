@@ -11,4 +11,6 @@ class Producer < ApplicationRecord
   has_many :rooms, through: :entries
   has_many :messages
 
+  has_many :active_producer_notifications, class_name: 'Notification', foreign_key: 'visitor_producer_id', dependent: :destroy
+  has_many :passive_producer_notifications, class_name: 'Notification', foreign_key: 'visited_producer_id', dependent: :destroy
 end

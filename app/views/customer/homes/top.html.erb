@@ -1,32 +1,18 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-12 offset-md-1">
-      <h2>商品一覧</h2>
-      <div class="d-flex align-content-around flex-wrap">
-        <% @products.each do |product| %>
-          <div class="card" style="width: 15rem;">
-            <%= attachment_image_tag product, :image, :fill, 200, 150, format: 'jpeg' %>
-            <div class="card-body">
-              <div class="card-title"><%= product.name %></div>
-              <p class="card-text"><%= product.introduction %></p>
-              <%= link_to '商品詳細へ', product_path(product), class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
+    <div class="col-md-12">
+      <div  class="d-flex justify-content-center">
+        <h2>人気商品一覧</h2>
       </div>
-      <h2>レシピ一覧</h2>
-      <div class="d-flex align-content-around flex-wrap">
-        <% @recipes.each do |recipe| %>
-          <div class="card" style="width: 15rem;">
-            <%= attachment_image_tag recipe, :image, :fill, 200, 150, format: 'jpeg' %>
-            <div class="card-body">
-              <div class="card-title"><%= recipe.name %></div>
-              <p class="card-text"><%= recipe.introduction %></p>
-              <%= link_to 'レシピ詳細へ', recipe_path(recipe), class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
+      
+      <%= render 'customer/products/products', products: @products %>
+      
+      <div  class="d-flex justify-content-center row mt-5">
+        <h2>人気レシピ一覧</h2>
       </div>
+      
+      <%= render 'customer/recipes/recipes', recipes: @recipes %>
+      
     </div>
   </div>
 </div>

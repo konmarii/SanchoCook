@@ -60,6 +60,9 @@ Rails.application.routes.draw do
   
   resources :favorites, module: :customer, only: [:index]
 
+  resources :notifications, module: :customer, only: [:index, :update]
+
+
   namespace :producer do
     root to: 'homes#top'
 
@@ -86,6 +89,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :show, :create]
     
     resources :messages, only: [:index, :show, :create]
+    
+    resources :notifications, only: [:index, :update]
 
   end
 

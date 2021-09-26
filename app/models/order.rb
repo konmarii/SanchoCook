@@ -11,9 +11,11 @@ class Order < ApplicationRecord
   enum order_status: {
     payment_waiting: 0,
     payment_confirmed: 1,
-    in_production: 2,
-    preparing_delivery: 3,
-    delivered: 4
   }
-
+  
+  enum delivery_status: {
+    in_production: 0,
+    preparing_delivery: 1,
+    delivered: 2
+  }
 end

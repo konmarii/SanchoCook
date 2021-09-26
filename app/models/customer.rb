@@ -13,4 +13,7 @@ class Customer < ApplicationRecord
   has_many :favorite_products
   has_many :favorite_recipes
   has_many :recipe_comments
+  
+  has_many :active_customer_notifications, class_name: 'Notification', foreign_key: 'visitor_customer_id', dependent: :destroy
+  has_many :passive_customer_notifications, class_name: 'Notification', foreign_key: 'visited_customer_id', dependent: :destroy
 end

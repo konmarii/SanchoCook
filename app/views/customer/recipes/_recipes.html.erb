@@ -1,0 +1,19 @@
+<div class="d-flex align-content-around flex-wrap">
+    <% recipes.each do |recipe| %>
+        <%= link_to recipe_path(recipe), class:"test ustify-content-center" do %>
+          <div class="row mt-5">
+            <div class="container">
+              <div class="zoomInText">
+                <span class="mask">
+                  <%= attachment_image_tag recipe, :image, :fill, 360, 270, format: 'jpeg' %>
+                  <span class="cap">
+                    <%= recipe.name %><br>
+                    <%= recipe.introduction %>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    <% end %>
+</div>

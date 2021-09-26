@@ -6,7 +6,7 @@
                     <% if notification.checked == false %>
                         <div>
                             <% customer_id = notification.visitor_customer_id %>
-                            <%= link_to message_path(customer_id) do %>
+                            <%= link_to producer_message_path(customer_id) do %>
                                 <%= notification.visitor_customer.last_name %>さん
                             <% end %>
                             があなたにDMを送りました。
@@ -16,7 +16,7 @@
                     <% end %>
                 <% end %>
             <% else %>
-                <p>通知はません</p>
+                <p>通知はありません</p>
             <% end %>
         </div>
     </div>

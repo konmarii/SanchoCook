@@ -3,7 +3,7 @@ class Customer::ProductsController < ApplicationController
   
   def index
     @products = Product.where(sales_status:true)
-    @products = Product.page(params[:page]).per(9)
+    @products_pagination = @products.page(params[:page]).per(9)
   end
 
   def show

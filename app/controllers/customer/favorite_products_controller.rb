@@ -1,6 +1,5 @@
 class Customer::FavoriteProductsController < ApplicationController
   before_action :authenticate_customer!
-
     
   def create
     @product = Product.find(params[:product_id])

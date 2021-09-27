@@ -10,6 +10,12 @@ class Product < ApplicationRecord
   has_many :recipes
   has_many :favorite_products
   
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :tax_excluded_price, presence: true
+  validates :sales_status, presence: true
+  
   def favorited_by?(current_customer)
     favorite_products.where(customer_id: current_customer.id).exists?
   end

@@ -24,7 +24,7 @@
         <% i=0 %>
         <% @recipe_details.each do |recipe_detail| %>
           <div><%= i+=1 %></div>
-          <div class="card" style="width: 15rem;">
+          <div class="card" style="width: 14rem;">
             <%= attachment_image_tag recipe_detail, :image, :fill, 200, 150, format: 'jpeg' %>
             <div class="card-body">
               <p class="card-text"><%= recipe_detail.explanation %></p>

@@ -33,7 +33,6 @@ class Producer::RecipesController < ApplicationController
     @recipe_details = RecipeDetail.where(recipe_id: @recipe.id)
   end
   
-  
   def edit_recipe_introduction
     @recipe = Recipe.find(params[:id])
     @ingredient = Ingredient.new
@@ -43,13 +42,17 @@ class Producer::RecipesController < ApplicationController
   end
 
   def create
-    @product = Product.find(params[:recipe][:product_id])
-    @recipe = Recipe.new(recipe_params)
-    @recipe.product_id = @product.id
-    if @recipe.save
-      redirect_to producer_edit_recipe_detail_path(@recipe.id)
+    if params[:recipe][:product_id].present?
+      @product = Product.find(params[:recipe][:product_id])
+      @recipe = Recipe.new(recipe_params)
+      @recipe.product_id = @product.id
+      if @recipe.save
+        redirect_to producer_edit_recipe_detail_path(@recipe.id)
+      else
+        redirect_to request.referrer
+      end
     else
-      redirect_to root_path
+      redirect_to request.referrer
     end
   end
 
@@ -58,7 +61,7 @@ class Producer::RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to producer_recipes_path, success: "レシピを更新しました。"
     else
-      render :edit
+      redirect_to request.referrer
     end
   end
 

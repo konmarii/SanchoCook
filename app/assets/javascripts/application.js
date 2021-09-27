@@ -16,6 +16,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require jquery.raty.js
 
 $(document).ready(function () {
   $("#vegetables").skippr({

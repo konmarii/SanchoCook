@@ -1,13 +1,21 @@
 <div id="recipe_comment-<%= recipe.id %>">
   <% recipe.recipe_comments.each do |recipe_comment| %>
-    <div class="comment_user">
-      <%= recipe_comment.customer.nickname %>:
-    </div>
-    <%= recipe_comment.comment %>
+    <div><%= recipe_comment.customer.nickname %>:</div>
+    <div class="movie-evaluation" data-score="<%= recipe_comment.evaluation %>"></div>
+    <div><%= recipe_comment.comment %></div>
     <div class="d-flex justify-content-end" %>
         <% if recipe_comment.customer == current_customer %>
-            <%= link_to "削除する", recipe_recipe_comment_path(recipe, recipe_comment), class: "btn btn-sm btn-danger", id: "comment_destroy", method: :delete, remote: true %>
+            <%= link_to "削除する", recipe_recipe_comment_path(recipe, recipe_comment), class: "btn btn-sm btn-outline-danger", method: :delete, remote: true %>
         <% end %>
     </div>
   <% end %>
+  <script>
+    $('.movie-evaluation').raty({
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      },
+      path: '/assets/'
+    });
+  </script>
 </div>

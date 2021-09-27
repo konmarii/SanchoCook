@@ -34,6 +34,7 @@ class Customer::OrdersController < ApplicationController
 
   def create
     @cart_products = CartProduct.where(customer_id: current_customer.id)
+    
     if @order = Order.create(order_params)
       @cart_products.each do |cart_product|
         OrderProduct.create(
@@ -45,10 +46,14 @@ class Customer::OrdersController < ApplicationController
         )
       end
       render :thanks
-      @customer = current_customer
-      ContactMailer.thanks_mail(@customer, @order).deliver
-      cart_products = CartProduct.where(customer_id: current_customer.id)
-      cart_products.destroy_all
+        @customer = current_customer
+      if @order.payment_method == 0
+        ContactMailer.thanks_mail(@customer, @order).deliver
+      else
+        ContactMailer.bank_transfer_mail(@customer, @order).deliver
+      end
+        cart_products = CartProduct.where(customer_id: current_customer.id)
+        cart_products.destroy_all
     end
   end
 

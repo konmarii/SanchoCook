@@ -38,7 +38,6 @@ class Customer::CartProductsController < ApplicationController
     cart_products.destroy_all
     redirect_to cart_products_path, success: "カートを空にしました。"
   end
-  
 
   private
   def cart_product_params

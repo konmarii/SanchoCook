@@ -9,7 +9,6 @@ class Customer::MessagesController < ApplicationController
     @producer = Producer.find(params[:id])
     rooms = current_customer.entries.pluck(:room_id)
     entry = Entry.find_by(producer_id: @producer.id, room_id: rooms)
-    
     # もしentryしたことあるなら
     unless entry.nil?
       # @roomに上記entryのroomを代入
@@ -21,7 +20,6 @@ class Customer::MessagesController < ApplicationController
       # entryを会員分と生産者で作る
       Entry.create(customer_id: current_customer.id, producer_id: @producer.id, room_id: @room.id)
     end
-    
     @messages = @room.messages
     @message = Message.new(room_id: @room.id)
   end
@@ -46,7 +44,6 @@ class Customer::MessagesController < ApplicationController
   end
   
   private
-
   def message_params
     params.require(:message).permit(:message, :room_id)
   end

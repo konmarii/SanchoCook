@@ -73,7 +73,7 @@ Rails.application.routes.draw do
 
     resources :products
 
-    resources :recipes, only: [:new, :index, :show, :destroy, :update]
+    resources :recipes, only: [:new, :create, :index, :show, :destroy, :update]
     get '/edit_recipe_detail/:id', to: 'recipes#edit_recipe_detail', as: 'edit_recipe_detail'
     get '/edit_recipe/:id', to: 'recipes#edit_recipe_introduction', as: 'edit_recipe_introduction'
 

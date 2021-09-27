@@ -5,11 +5,11 @@ class Producer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :image
 
-  has_many :products
+  has_many :products, dependent: :destroy
   
-  has_many :entries
-  has_many :rooms, through: :entries
-  has_many :messages
+  has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   has_many :active_producer_notifications, class_name: 'Notification', foreign_key: 'visitor_producer_id', dependent: :destroy
   has_many :passive_producer_notifications, class_name: 'Notification', foreign_key: 'visited_producer_id', dependent: :destroy

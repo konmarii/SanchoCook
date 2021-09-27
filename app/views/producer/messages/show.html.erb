@@ -2,35 +2,32 @@
     <div class="row">
         <div class="col-md-12 mt-5">
             <h2><%= @customer.last_name %><%= @customer.first_name %>さんからのお問い合わせ</h2>
-
-            <table class="message table">
-              <thead>
-                <tr>
-                  <th style="text-align: left; font-size: 20px;"><%= @customer.last_name %><%= @customer.first_name %></th>
-                  <th style="text-align: right; font-size: 20px;"><%= current_producer.last_name %><%= current_producer.first_name %></th>
-                </tr>
-              </thead>
-              <tbody class="messages">
-                <% @messages.each do |message| %>
-                  <% if message.producer_id == nil %>
-                    <tr>
-                      <th>
-                        <p style="text-align: left;"><%= message.message %></p>
-                      </th>
-                      <th></th>
-                    </tr>
-                  <% else %>
-                    <tr>
-                      <th></th>
-                      <th>
-                        <p style="text-align: right;"><%= message.message %></p>
-                      </th>
-                    </tr>
-                  <% end %>
-                <% end %>
-              </tbody>
-            </table>
             
+            <div class="d-flex justify-content-between">
+              <h4><%= @customer.last_name %><%= @customer.first_name %></h4>
+              <h4><%= current_producer.last_name %><%= current_producer.first_name %></h4>
+            </div>
+
+            <div class="messages">
+              <% @messages.each do |message| %>
+                <% if message.customer_id == nil %>
+                  <div class="d-flex justify-content-end">
+                    <div class="balloon2-right">
+                      <p><%= message.message %></p>
+                      <p><%= message.created_at.strftime("%m/%d %H:%M:%S") %></p>
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="d-flex justify-content-start">
+                    <div class="balloon2-left">
+                      <p><%= message.message %></p>
+                      <p><%= message.created_at.strftime("%m/%d %H:%M:%S") %></p>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+
             <div class="row justify-content-end">
               <div id="text">
                 <%= form_with model: [:producer, @message], remote: true do |f| %>

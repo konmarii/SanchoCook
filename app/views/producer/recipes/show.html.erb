@@ -1,6 +1,7 @@
 <div class="container">
   
   <div class="row mt-5">
+    <h2>レシピ詳細</h2>
     <div class="col-md-10 offset-md-1">
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <%= link_to "編集する", producer_edit_recipe_detail_path(@recipe), class: "btn btn-outline-secondary" %>
@@ -21,6 +22,10 @@
         <tr>
           <th>レシピ紹介</th>
           <th><%= @recipe.introduction %></th>
+        </tr>
+        <tr>
+          <th>お気に入りされた数</th>
+          <th><%= @favorites.count %></th>
         </tr>
       </table>
     </div>
@@ -44,11 +49,10 @@
       <h5>作り方</h5>
       <div class="d-flex align-content-around flex-wrap">
         <% @recipe_details.each do |recipe_detail| %>
-          <div><%= recipe_detail.id %></div>
           <div class="card" style="width: 15rem;">
             <%= attachment_image_tag recipe_detail, :image, :fill, 200, 150, format: 'jpeg' %>
             <div class="card-body">
-              <p class="card-text"><%= recipe_detail.id %>. <%= recipe_detail.explanation %></p>
+              <p class="card-text"><%= recipe_detail.explanation %></p>
             </div>
           </div>
         <% end %>

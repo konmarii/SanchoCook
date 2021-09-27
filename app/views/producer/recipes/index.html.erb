@@ -1,20 +1,30 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-12 offset-md-1">
+    <div class="col-md-10 offset-md-1">
       <h2>レシピ一覧</h2>
       <h2>（<%= @recipes.count %>件）</h2>
-      <div class="d-flex align-content-around flex-wrap">
-        <% @recipes.each do |recipe| %>
-          <div class="card" style="width: 15rem;">
-            <%= attachment_image_tag recipe, :image, :fill, 200, 150, format: 'jpeg' %>
-            <div class="card-body">
-              <div class="card-title"><%= recipe.name %></div>
-              <p class="card-text"><%= recipe.introduction %></p>
-              <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-primary" %>
-            </div>
-          </div>
+      <div class="text-right mb-3">
+        <%= link_to new_producer_recipe_path, class:"btn btn-light shadow-sm rounded-circle p-0 text-center", style:"width:2rem;height:2rem;" do %>
+        <p>+</p>
         <% end %>
       </div>
+      <table class = "table" >
+        <thead>
+          <tr>
+            <th>レシピ名</th>
+            <th>関連商品</th>
+          </tr>
+        </thead>
+        <% @recipes.each do |recipe| %>
+          <tbody>
+            <tr>
+              <td class = "text-dark"><%=link_to recipe.name, producer_recipe_path(recipe) %></td>
+              <td><%= recipe.product.name %></td>
+
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
       <%= paginate @recipes %>
     </div>    
   </div>

@@ -3,7 +3,7 @@ class Customer::OrdersController < ApplicationController
   
   def index
     @orders = Order.where(customer_id: current_customer.id)
-    @orders = Order.page(params[:page]).per(5)
+    @orders_pagination = @orders.page(params[:page]).per(5)
   end
   
   def new

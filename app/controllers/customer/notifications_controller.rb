@@ -1,7 +1,6 @@
 class Customer::NotificationsController < ApplicationController
   before_action :authenticate_customer!
 
-  
   def index
     @notifications = Notification.where(visited_customer_id: current_customer.id)
   end

@@ -3,7 +3,7 @@ class Customer::RecipesController < ApplicationController
   
   def index
     @recipes = Recipe.all
-    @recipes = Recipe.page(params[:page]).per(9)
+    @recipes_pagination = @recipes.page(params[:page]).per(9)
   end
   
   def show

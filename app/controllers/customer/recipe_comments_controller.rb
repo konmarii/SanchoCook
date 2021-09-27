@@ -18,6 +18,6 @@ class Customer::RecipeCommentsController < ApplicationController
   
   private
   def recipe_comment_params
-    params.require(:recipe_comment).permit(:customer_id, :recipe_id, :comment)
+    params.require(:recipe_comment).permit(:customer_id, :recipe_id, :comment, :evaluation)
   end
 end

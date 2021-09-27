@@ -52,7 +52,7 @@
   </div>
   <div class="d-flex justify-content-center">
     <div class="col-md-6">
-      <table class="table table-borderless">
+      <table class="table">
         <thread>
           <tr>
             <th class="d-flex justify-content-center">
@@ -71,9 +71,22 @@
       
       <div class="row mt-5 d-flex justify-content-center">
         <%= form_with model: @new_recipe_comment, url: recipe_recipe_comments_path(@recipe), method: :post, remote:true do |f| %>
-          <%= f.text_field :comment, placeholder: "コメントを書く" %>
-          <%= f.submit "コメントを投稿する" %>
+          <div id="evaluate_stars">
+            <label>評価</label>
+          </div>
+          <%= f.text_area :comment, placeholder: "コメントを書く", class:"form-control" %>
+          <div class="actions mt-3 d-flex justify-content-center">
+            <%= f.submit "コメントを投稿する", class:"btn btn-outline-info" %>
+          </div>
         <% end %>
+        <script>
+          $('#evaluate_stars').raty({
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'recipe_comment[evaluation]'
+          });
+        </script>
       </div>
     </div>
   </div>

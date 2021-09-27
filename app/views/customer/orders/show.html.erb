@@ -44,6 +44,7 @@
         <thead class="thead-light">
           <tr>
             <th>商品名</th>
+            <th>生産者名</th>
             <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
@@ -53,7 +54,17 @@
         <tbody>
           <% @order_products.each do |order_product| %>
           <tr>
-            <td><%= order_product.product.name %></td>
+            <td>
+              <%= link_to product_path(order_product.product) do %>
+                <%= order_product.product.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to producer_path(order_product.product.producer) do %>
+                <%= order_product.product.producer.last_name %>
+                <%= order_product.product.producer.first_name %>
+              <% end %>
+            </td>
             <td><%= order_product.product.include_tax.round %></td>
             <td><%= order_product.amount %></td>
             <td><%= order_product.product.tax_excluded_price %></td>

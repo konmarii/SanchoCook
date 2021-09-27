@@ -47,7 +47,7 @@ class Producer::RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.product_id = @product.id
     if @recipe.save
-      redirect_to edit_producer_recipe_path(@recipe.id), success: "レシピ登録が完了しました。"
+      redirect_to producer_edit_recipe_detail_path(@recipe.id)
     else
       redirect_to root_path
     end
@@ -63,6 +63,10 @@ class Producer::RecipesController < ApplicationController
   end
 
   def destroy
+    @recipe = Recipe.find(params[:id])
+    if @recipe.destroy
+      redirect_to producer_recipes_path
+    end
   end
 
   private

@@ -1,5 +1,6 @@
 class Customer::OrdersController < ApplicationController
   before_action :authenticate_customer!
+  
   def index
     @orders = Order.where(customer_id: current_customer.id)
     @orders = Order.page(params[:page]).per(5)
@@ -71,7 +72,6 @@ class Customer::OrdersController < ApplicationController
   end
 
   private
-
   def order_params
     params.require(:order).permit(:customer_id, :delivery_postal_code, :delivery_address, :delivery_name, :delivery_fee, :total_payment, :order_status, :delivery_status, :payment_method)
   end

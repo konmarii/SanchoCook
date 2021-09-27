@@ -6,6 +6,9 @@
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <%= link_to "編集する", producer_edit_recipe_detail_path(@recipe), class: "btn btn-outline-secondary" %>
       </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+        <%= link_to "削除する", producer_recipe_path(@recipe), method: :delete, class: "btn btn-outline-danger" %>
+      </div>
     </div>
   </div>
   

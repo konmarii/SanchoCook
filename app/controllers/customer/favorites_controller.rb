@@ -1,5 +1,5 @@
 class Customer::FavoritesController < ApplicationController
-
+  before_action :authenticate_customer!
   def index
     @favorite_products = FavoriteProduct.where(customer_id: current_customer.id)
     @products = []
@@ -14,5 +14,4 @@ class Customer::FavoritesController < ApplicationController
     end
     @recipes.flatten!
   end
-
 end

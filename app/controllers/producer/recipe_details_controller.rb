@@ -7,7 +7,6 @@ class Producer::RecipeDetailsController < ApplicationController
       redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
     end
   end
-  
 
   def create
     @recipe_detail = RecipeDetail.new(recipe_detail_params)

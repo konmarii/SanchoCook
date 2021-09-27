@@ -41,7 +41,6 @@ class Producer::MessagesController < ApplicationController
   end
   
   private
-
   def message_params
     params.require(:message).permit(:message, :room_id)
   end

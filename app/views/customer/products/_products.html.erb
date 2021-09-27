@@ -1,8 +1,8 @@
-<div class="d-flex flex-wrap">
+<div class="d-flex align-content-around flex-wrap">
     <% products.each do |product| %>
         <%= link_to product_path(product), class:"test ustify-content-center" do %>
           <div class="row mt-5">
-            <div class="contaienr">
+            <div class="container">
               <div class="zoomInText">
                 <span class="mask">
                   <div class="product_image"><%= attachment_image_tag product, :image, :fill, 360, 270, format: 'jpeg' %></div>

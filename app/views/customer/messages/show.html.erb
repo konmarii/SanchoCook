@@ -2,36 +2,30 @@
     <div class="row">
         <div class="col-md-12 mt-5">
             <h2><%= @producer.last_name %><%= @producer.first_name %>さんへのお問い合わせ</h2>
-
-            <table class="message table">
-              <thead>
-                <tr>
-                  <th style="text-align: left; font-size: 20px;"><%= @producer.last_name %><%= @producer.first_name %></th>
-                  <th style="text-align: right; font-size: 20px;"><%= current_customer.last_name %><%= current_customer.first_name %></th>
-                </tr>
-              </thead>
-              
-              <tbody class="messages">
-                <%#= render "message", messages: @messages %>
-                <% @messages.each do |message| %>
-                  <% if message.customer_id == nil %>
-                    <tr>
-                      <th>
-                        <p style="text-align: left;"><%= message.message %></p>
-                      </th>
-                      <th></th>
-                    </tr>
-                  <% else %>
-                    <tr>
-                      <th></th>
-                      <th>
-                        <p style="text-align: right;"><%= message.message %></p>
-                      </th>
-                    </tr>
-                  <% end %>
+            <div class="d-flex justify-content-between">
+              <h4><%= @producer.last_name %><%= @producer.first_name %></h4>
+              <h4><%= current_customer.last_name %><%= current_customer.first_name %></h4>
+            </div>
+            
+            <div class="messages">
+              <% @messages.each do |message| %>
+                <% if message.customer_id == nil %>
+                  <div class="d-flex justify-content-start">
+                    <div class="balloon2-left">
+                      <p><%= message.message %></p>
+                      <p><%= message.created_at.strftime("%m/%d %H:%M:%S") %></p>
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="d-flex justify-content-end">
+                    <div class="balloon2-right">
+                      <p><%= message.message %></p>
+                      <p><%= message.created_at.strftime("%m/%d %H:%M:%S") %></p>
+                    </div>
+                  </div>
                 <% end %>
-              </tbody>
-            </table>
+              <% end %>
+            </div>
 
             <div class="row justify-content-end">
               <div id="text">

@@ -63,6 +63,7 @@ Rails.application.routes.draw do
 
   namespace :producer do
     root to: 'homes#top'
+    get '/about', to: 'homes#about'
 
     resources :producers, only: [:edit, :update]
     get '/my_page', to: 'producers#show'

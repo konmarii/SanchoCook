@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :customer do
-    get 'recipe_comments/create'
-    get 'recipe_comments/destroy'
-  end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -61,6 +57,8 @@ Rails.application.routes.draw do
   resources :favorites, module: :customer, only: [:index]
 
   resources :notifications, module: :customer, only: [:index, :update]
+  
+  resources :producers, module: :customer, only: [:show]
 
 
   namespace :producer do

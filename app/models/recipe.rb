@@ -1,9 +1,9 @@
 class Recipe < ApplicationRecord
   belongs_to :product
-  has_many :ingredients
-  has_many :recipe_details
-  has_many :favorite_recipes
-  has_many :recipe_comments
+  has_many :ingredients, dependent: :destroy
+  has_many :recipe_details, dependent: :destroy
+  has_many :favorite_recipes, dependent: :destroy
+  has_many :recipe_comments, dependent: :destroy
 
   attachment :image
   

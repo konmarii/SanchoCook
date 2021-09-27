@@ -36,16 +36,7 @@
   <div class="row mt-5">
     <div class="col-md-8">
       <h3>この商品を使ったレシピ一覧</h3>
-      <% @recipes.each do |recipe| %>
-        <div class="card" style="width: 18rem;">
-          <%= attachment_image_tag recipe, :image, :fill, 550, 400, format: 'jpeg' %>
-          <div class="card-body">
-            <div class="card-title"><%= recipe.name %></div>
-            <p class="card-text"><%= recipe.introduction %></p>
-            <%= link_to 'レシピ詳細へ', recipe_path(recipe), class: "btn btn-primary" %>
-          </div>
-        </div>
-      <% end %>
+      <%= render 'customer/recipes/recipes', recipes: @recipes %>
     </div>
   </div>
 </div>

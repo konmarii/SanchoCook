@@ -73,7 +73,11 @@
     <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
     <%= f.hidden_field :delivery_fee, :value => 800 %>
     <%= f.hidden_field :total_payment, :value => @sum+800 %>
-    <%= f.hidden_field :order_status, :value => :payment_waiting %>
+    <% if @order.payment_method == "credit_card" %>
+      <%= f.hidden_field :order_status, :value => :payment_confirmed %>
+    <% else %>
+      <%= f.hidden_field :order_status, :value => :payment_waiting %>
+    <% end %>
     <%= f.hidden_field :delivery_status, :value => :in_production %>
     <%= f.hidden_field :payment_method, :value => @order.payment_method %>
     <% if @order.payment_method == "credit_card" %>

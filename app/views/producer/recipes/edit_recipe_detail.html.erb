@@ -21,7 +21,9 @@
         <%= render 'recipe_details', recipe_details: @recipe_details, recipe_detail: @recipe_detail, recipe: @recipe %>
       </div>
       <div class="d-flex align-content-around flex-wrap">
-        <% @recipe_details.each do |recipe_detail, i| %>
+        <% i=0 %>
+        <% @recipe_details.each do |recipe_detail| %>
+          <div><%= i+=1 %></div>
           <div class="card" style="width: 15rem;">
             <%= attachment_image_tag recipe_detail, :image, :fill, 200, 150, format: 'jpeg' %>
             <div class="card-body">

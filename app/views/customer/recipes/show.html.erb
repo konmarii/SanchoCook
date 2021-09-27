@@ -52,7 +52,23 @@
   </div>
   <div class="d-flex justify-content-center">
     <div class="col-md-6">
-      <%= render 'customer/recipe_comments/recipe_comments', recipe: @recipe, recipe_comments: @recipe_comments %>
+      <table class="table table-borderless">
+        <thread>
+          <tr>
+            <th class="d-flex justify-content-center">
+              <h5>レシピレビュー</h5>
+            </th>
+          </tr>
+        </thread>
+        <tbody>
+          <tr>
+            <td>
+              <%= render 'customer/recipe_comments/recipe_comments', recipe: @recipe, recipe_comments: @recipe_comments %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
       <div class="row mt-5 d-flex justify-content-center">
         <%= form_with model: @new_recipe_comment, url: recipe_recipe_comments_path(@recipe), method: :post, remote:true do |f| %>
           <%= f.text_field :comment, placeholder: "コメントを書く" %>

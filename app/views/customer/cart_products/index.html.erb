@@ -27,7 +27,7 @@
             </td>
             <td>
               <%= form_with model: cart_product, url: cart_product_path(cart_product), method: :patch, local: true do |f| %>
-                <%= f.select :amount, @numbers %>
+                <%= f.select :amount, @numbers %>kg
                 <%= f.submit '変更' %>
               <% end %>
             </td>

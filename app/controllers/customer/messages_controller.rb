@@ -6,19 +6,20 @@ class Customer::MessagesController < ApplicationController
   end
 
   def show
-    @producer = Producer.find(params[:id])
+    @entry = Entry.find(params[:id])
+    @producer = @entry.producer
     rooms = current_customer.entries.pluck(:room_id)
     entry = Entry.find_by(producer_id: @producer.id, room_id: rooms)
     # もしentryしたことあるなら
-    if entry.nil?
+    unless entry.nil?
+      # @roomに上記entryのroomを代入
+      @room = entry.room
+    else
       # それ以外は新しくroomを作り、
       @room = Room.new
       @room.save
       # entryを会員分と生産者で作る
       Entry.create(customer_id: current_customer.id, producer_id: @producer.id, room_id: @room.id)
-    else
-      # @roomに上記entryのroomを代入
-      @room = entry.room
     end
     @messages = @room.messages
     @message = Message.new(room_id: @room.id)

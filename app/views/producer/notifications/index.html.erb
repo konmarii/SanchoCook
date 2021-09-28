@@ -6,9 +6,7 @@
                     <% if notification.checked == false %>
                         <div>
                             <% customer_id = notification.visitor_customer_id %>
-                            <%= link_to producer_message_path(customer_id) do %>
-                                <%= notification.visitor_customer.last_name %>さん
-                            <% end %>
+                            <%= notification.visitor_customer.last_name %>さん
                             があなたにDMを送りました。
                             <%= notification.created_at.strftime("%Y-%m-%d %H:%M") %>
                             <%= link_to '既読にする', producer_notification_path(notification), method: :put %>

@@ -40,10 +40,10 @@ Rails.application.routes.draw do
   resources :cart_products, module: :customer, only: [:index, :update, :destroy]
   post '/cart_products', to: 'customer/cart_products#create', as: 'create_cart_products'
 
+  patch '/customers/withdraw', to: 'customer/customers#withdraw'
   resources :customers, module: :customer, only: [:show, :edit, :update]
   get '/my_page', to: 'customer/customers#show'
   get '/customers/:id/unsubscribe', to: 'customer/customers#unsubscribe', as: 'customer_unsubscribe'
-  patch '/customers/withdraw', to: 'customer/customers#withdraw'
 
   resources :messages, module: :customer, only: [:index, :show, :create]
 

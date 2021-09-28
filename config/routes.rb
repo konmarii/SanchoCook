@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -10,15 +9,15 @@ Rails.application.routes.draw do
   end
 
   devise_for :producers, controllers: {
-  sessions:      'producers/sessions',
-  passwords:     'producers/passwords',
-  registrations: 'producers/registrations'
+    sessions: 'producers/sessions',
+    passwords: 'producers/passwords',
+    registrations: 'producers/registrations',
   }
 
   devise_for :customers, controllers: {
-  sessions:      'customers/sessions',
-  passwords:     'customers/passwords',
-  registrations: 'customers/registrations'
+    sessions: 'customers/sessions',
+    passwords: 'customers/passwords',
+    registrations: 'customers/registrations',
   }
 
   root to: 'customer/homes#top'
@@ -39,27 +38,26 @@ Rails.application.routes.draw do
 
   delete '/cart_products/destroy_all', to: 'customer/cart_products#destroy_all'
   resources :cart_products, module: :customer, only: [:index, :update, :destroy]
-  post '/cart_products', to: 'customer/cart_products#create',  as: 'create_cart_products'
+  post '/cart_products', to: 'customer/cart_products#create', as: 'create_cart_products'
 
+  patch '/customers/withdraw', to: 'customer/customers#withdraw'
   resources :customers, module: :customer, only: [:show, :edit, :update]
   get '/my_page', to: 'customer/customers#show'
   get '/customers/:id/unsubscribe', to: 'customer/customers#unsubscribe', as: 'customer_unsubscribe'
-  patch '/customers/withdraw', to: 'customer/customers#withdraw'
-  
+
   resources :messages, module: :customer, only: [:index, :show, :create]
-  
+
   get "search" => "customer/searches#search"
-  
+
   resources :messages, module: :customer, only: [:show, :create]
-  
+
   get "search" => "customer/searches#search"
-  
+
   resources :favorites, module: :customer, only: [:index]
 
   resources :notifications, module: :customer, only: [:index, :update]
-  
-  resources :producers, module: :customer, only: [:show]
 
+  resources :producers, module: :customer, only: [:show]
 
   namespace :producer do
     root to: 'homes#top'
@@ -76,7 +74,6 @@ Rails.application.routes.draw do
     get '/edit_recipe_detail/:id', to: 'recipes#edit_recipe_detail', as: 'edit_recipe_detail'
     get '/edit_recipe/:id', to: 'recipes#edit_recipe_introduction', as: 'edit_recipe_introduction'
 
-
     resources :ingredients, only: [:create, :destroy]
 
     resources :recipe_details, only: [:create, :destroy]
@@ -84,13 +81,12 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update] do
       patch '/order_details/:id', to: 'order_details#update', as: 'details'
     end
-    
-    resources :messages, only: [:index, :show, :create]
-    
-    resources :messages, only: [:index, :show, :create]
-    
-    resources :notifications, only: [:index, :update]
 
+    resources :messages, only: [:index, :show, :create]
+
+    resources :messages, only: [:index, :show, :create]
+
+    resources :notifications, only: [:index, :update]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

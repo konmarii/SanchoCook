@@ -25,5 +25,4 @@ class Customer::CartProductsControllerTest < ActionDispatch::IntegrationTest
     get customer_cart_products_destroy_all_url
     assert_response :success
   end
-
 end

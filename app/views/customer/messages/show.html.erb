@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mt-5">
-            <h2><%= @producer.last_name %><%= @producer.first_name %>さんへのお問い合わせ</h2>
+            <h2><%= @entry.producer.last_name %><%= @entry.producer.first_name %>さんへのお問い合わせ</h2>
             <div class="d-flex justify-content-between">
-              <h4><%= @producer.last_name %><%= @producer.first_name %></h4>
+              <h4><%= @entry.producer.last_name %><%= @entry.producer.first_name %></h4>
               <h4><%= current_customer.last_name %><%= current_customer.first_name %></h4>
             </div>
             

@@ -1,15 +1,15 @@
 class Producer::RecipesController < ApplicationController
   before_action :authenticate_producer!
   before_action :permitted_producer
-  
+
   def permitted_producer
-    if current_producer.is_permitted != true 
+    if current_producer.is_permitted != true
       redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
     end
   end
-  
+
   def index
-    @recipes = Recipe.joins(:product).where(products: {producer_id: current_producer.id})
+    @recipes = Recipe.joins(:product).where(products: { producer_id: current_producer.id })
     @recipes_pagination = @recipes.page(params[:page]).per(9)
   end
 
@@ -32,7 +32,7 @@ class Producer::RecipesController < ApplicationController
     @ingredients = Ingredient.where(recipe_id: @recipe.id)
     @recipe_details = RecipeDetail.where(recipe_id: @recipe.id)
   end
-  
+
   def edit_recipe_introduction
     @recipe = Recipe.find(params[:id])
     @ingredient = Ingredient.new
@@ -73,6 +73,7 @@ class Producer::RecipesController < ApplicationController
   end
 
   private
+
   def recipe_params
     params.require(:recipe).permit(:product_id, :name, :image, :introduction)
   end

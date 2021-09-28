@@ -1,11 +1,11 @@
 class Customer::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def index
     @orders = Order.where(customer_id: current_customer.id)
     @orders_pagination = @orders.page(params[:page]).per(5)
   end
-  
+
   def new
     @order = Order.new
     @cart_products = CartProduct.where(customer_id: current_customer.id)
@@ -26,8 +26,7 @@ class Customer::OrdersController < ApplicationController
       @order.delivery_address = params[:order][:delivery_address]
       @order.delivery_name = params[:order][:delivery_name]
     end
-    if
-      @order.delivery_postal_code.empty? || @order.delivery_address.empty? || @order.delivery_name.empty?
+    if @order.delivery_postal_code.empty? || @order.delivery_address.empty? || @order.delivery_name.empty?
       redirect_to new_order_path
     end
   end
@@ -45,14 +44,14 @@ class Customer::OrdersController < ApplicationController
         )
       end
       render :thanks
-        @customer = current_customer
+      @customer = current_customer
       if @order.payment_method == 0
         ContactMailer.thanks_mail(@customer, @order).deliver
       else
         ContactMailer.bank_transfer_mail(@customer, @order).deliver
       end
-        cart_products = CartProduct.where(customer_id: current_customer.id)
-        cart_products.destroy_all
+      cart_products = CartProduct.where(customer_id: current_customer.id)
+      cart_products.destroy_all
     end
   end
 
@@ -64,7 +63,7 @@ class Customer::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_products = OrderProduct.where(order_id: params[:id])
   end
-  
+
   def pay
     @order = Order.find(params[:id])
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
@@ -76,6 +75,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   private
+
   def order_params
     params.require(:order).permit(:customer_id, :delivery_postal_code, :delivery_address, :delivery_name, :delivery_fee, :total_payment, :order_status, :delivery_status, :payment_method)
   end

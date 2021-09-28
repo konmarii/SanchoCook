@@ -15,5 +15,4 @@ class Producer::ProducersControllerTest < ActionDispatch::IntegrationTest
     get producer_producers_update_url
     assert_response :success
   end
-
 end

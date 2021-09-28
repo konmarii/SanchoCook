@@ -1,5 +1,6 @@
 class Customer::CustomersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :correct_customer, only: [:edit, :unsubscribe]
 
   def show
     @customer = Customer.find(current_customer.id)
@@ -24,6 +25,13 @@ class Customer::CustomersController < ApplicationController
     @customer.update(is_deleted: true)
     reset_session
     redirect_to root_path, success: "退会しました。ありがとうございました。"
+  end
+  
+  def correct_customer
+    @customer = Customer.find(params[:id])
+    unless @customer.id == current_customer.id
+     redirect_to customer_path
+    end
   end
 
   private

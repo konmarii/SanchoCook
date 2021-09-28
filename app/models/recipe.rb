@@ -6,23 +6,23 @@ class Recipe < ApplicationRecord
   has_many :recipe_comments, dependent: :destroy
 
   attachment :image
-  
+
   validates :product, presence: true
   validates :name, presence: true
-  
+
   def favorited_by?(current_customer)
     favorite_recipes.where(customer_id: current_customer.id).exists?
-  end  
+  end
 
   def self.looks(search, word)
     if search == "perfect_match"
       @recipe = Recipe.where("name LIKE?", "#{word}")
     elsif search == "forward_match"
-      @recipe = Recipe.where("name LIKE?","#{word}%")
+      @recipe = Recipe.where("name LIKE?", "#{word}%")
     elsif search == "backward_match"
-      @recipe = Recipe.where("name LIKE?","%#{word}")
+      @recipe = Recipe.where("name LIKE?", "%#{word}")
     elsif search == "partial_match"
-      @recipe = Recipe.where("name LIKE?","%#{word}%")
+      @recipe = Recipe.where("name LIKE?", "%#{word}%")
     else
       @recipe = Recipe.all
     end

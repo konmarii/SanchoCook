@@ -1,6 +1,6 @@
 class Customer::CartProductsController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def index
     @cart_products = CartProduct.where(customer_id: current_customer.id)
     @numbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
@@ -40,6 +40,7 @@ class Customer::CartProductsController < ApplicationController
   end
 
   private
+
   def cart_product_params
     params.require(:cart_product).permit(:product_id, :customer_id, :amount)
   end

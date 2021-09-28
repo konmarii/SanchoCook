@@ -5,6 +5,6 @@ class OrderProduct < ApplicationRecord
   enum harvest_status: {
     unharvested: 0,
     harvesting: 1,
-    harvested: 2
+    harvested: 2,
   }
 end

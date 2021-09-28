@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
   add_flash_types :success, :info, :warning, :danger
 
   # 新規登録後のリダイレクト先
@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
       :sign_up,
@@ -50,7 +51,7 @@ class ApplicationController < ActionController::Base
         :image,
         :introduction,
         :is_permitted,
-        :is_delited
+        :is_delited,
       ]
     )
   end

@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
         :image,
         :introduction,
         :is_permitted,
-        :is_deleted,
+        :is_deleted
       ]
     )
   end

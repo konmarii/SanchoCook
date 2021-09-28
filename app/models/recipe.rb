@@ -9,8 +9,6 @@ class Recipe < ApplicationRecord
   
   validates :product, presence: true
   validates :name, presence: true
-  validates :image, presence: true
-  validates :introduction, presence: true
   
   def favorited_by?(current_customer)
     favorite_recipes.where(customer_id: current_customer.id).exists?

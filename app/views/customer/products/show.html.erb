@@ -19,7 +19,11 @@
                 <%= f.hidden_field :product_id, value: @product.id %>
                 <%= f.hidden_field :customer_id, value: current_customer.id %>
                 <%= f.select :amount, @numbers, class:"select" %>
-                <%= f.submit 'カートに入れる', class:"btn btn-outline-secondary" %>
+                <% if @product.sales_status == true %>
+                  <%= f.submit 'カートに入れる', class:"btn btn-outline-secondary" %>
+                <% else %>
+                  <div>こちらの商品は<br>只今売り切れ中です。</div>
+                <% end %>
               <% end %>
               </div>
               

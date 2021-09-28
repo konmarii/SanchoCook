@@ -17,9 +17,8 @@ class Customer < ApplicationRecord
   has_many :active_customer_notifications, class_name: 'Notification', foreign_key: 'visitor_customer_id', dependent: :destroy
   has_many :passive_customer_notifications, class_name: 'Notification', foreign_key: 'visited_customer_id', dependent: :destroy
   
-  enum is_deleted: { consent: false, nonconsent: true }
 
   def active_for_authentication?
-    super && self.is_deleted == "consent"
+    super && self.is_deleted == false
   end
 end

@@ -1,11 +1,11 @@
 class Customer::RecipesController < ApplicationController
   before_action :authenticate_customer!, except: [:index]
-  
+
   def index
     @recipes = Recipe.all
     @recipes_pagination = @recipes.page(params[:page]).per(9)
   end
-  
+
   def show
     @recipe = Recipe.find(params[:id])
     @favorite_recipe = FavoriteRecipe.where(customer_id: current_customer.id, recipe_id: @recipe.id)

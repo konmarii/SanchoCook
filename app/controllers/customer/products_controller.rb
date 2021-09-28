@@ -1,8 +1,8 @@
 class Customer::ProductsController < ApplicationController
   before_action :authenticate_customer!, except: [:index]
-  
+
   def index
-    @products = Product.where(sales_status:true)
+    @products = Product.where(sales_status: true)
     @products_pagination = @products.page(params[:page]).per(9)
   end
 

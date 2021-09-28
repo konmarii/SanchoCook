@@ -10,5 +10,4 @@ class Customer::MessagesControllerTest < ActionDispatch::IntegrationTest
     get customer_messages_create_url
     assert_response :success
   end
-
 end

@@ -5,5 +5,4 @@ class Producer::HomesControllerTest < ActionDispatch::IntegrationTest
     get producer_homes_top_url
     assert_response :success
   end
-
 end

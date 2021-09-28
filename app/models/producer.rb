@@ -6,7 +6,7 @@ class Producer < ApplicationRecord
   attachment :image
 
   has_many :products, dependent: :destroy
-  
+
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries, dependent: :destroy
   has_many :messages, dependent: :destroy

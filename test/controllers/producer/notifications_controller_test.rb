@@ -5,5 +5,4 @@ class Producer::NotificationsControllerTest < ActionDispatch::IntegrationTest
     get producer_notifications_index_url
     assert_response :success
   end
-
 end

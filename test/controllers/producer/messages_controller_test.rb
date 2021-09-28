@@ -10,5 +10,4 @@ class Producer::MessagesControllerTest < ActionDispatch::IntegrationTest
     get producer_messages_create_url
     assert_response :success
   end
-
 end

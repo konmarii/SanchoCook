@@ -34,7 +34,6 @@ class Customer::OrdersController < ApplicationController
 
   def create
     @cart_products = CartProduct.where(customer_id: current_customer.id)
-    
     if @order = Order.create(order_params)
       @cart_products.each do |cart_product|
         OrderProduct.create(

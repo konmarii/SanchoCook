@@ -87,3 +87,5 @@ end
 gem 'payjp'
 
 gem 'rubocop-airbnb'
+
+gem 'chart-js-rails', '~> 0.1.4'

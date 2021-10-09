@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery.raty.js
+//= require Chart.min
 
 $(document).ready(function () {
   $("#vegetables").skippr({

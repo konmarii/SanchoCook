@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-  namespace :producer do
-    get 'chart/index'
-  end
-  namespace :producer do
-    get 'chart_sample/index'
-  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -93,6 +88,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :show, :create]
 
     resources :notifications, only: [:index, :update]
+    
+    resources :charts, only: [:index]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

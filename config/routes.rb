@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-  namespace :producer do
-    get 'chart/index'
-  end
-  namespace :producer do
-    get 'chart_sample/index'
-  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

@@ -1,2 +1,0 @@
-module Producer::ChartHelper
-end

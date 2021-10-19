@@ -50,10 +50,6 @@ Rails.application.routes.draw do
 
   get "search" => "customer/searches#search"
 
-  resources :messages, module: :customer, only: [:show, :create]
-
-  get "search" => "customer/searches#search"
-
   resources :favorites, module: :customer, only: [:index]
 
   resources :notifications, module: :customer, only: [:index, :update]
@@ -84,9 +80,7 @@ Rails.application.routes.draw do
     end
 
     resources :messages, only: [:index, :show, :create]
-
-    resources :messages, only: [:index, :show, :create]
-
+    
     resources :notifications, only: [:index, :update]
   end
 

@@ -35,5 +35,4 @@ class Producer::RecipesControllerTest < ActionDispatch::IntegrationTest
     get producer_recipes_destroy_url
     assert_response :success
   end
-
 end

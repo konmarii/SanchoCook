@@ -1,0 +1,11 @@
+<div id="favorite-<%= product.id %>">
+  <% if product.favorited_by?(current_customer) %>
+    <%= link_to  product_favorite_product_path(product, favorite_product), method: :delete, remote: true do %>
+      ♥お気に入りから削除する
+    <% end %>
+  <% else %>
+    <%= link_to product_favorite_products_path(product), method: :post, remote: true do %>
+      ♡お気に入りに追加する
+    <% end %>
+  <% end %>
+</div>

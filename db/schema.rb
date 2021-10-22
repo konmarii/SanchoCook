@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_06_070222) do
+ActiveRecord::Schema.define(version: 2021_09_27_144820) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -62,8 +62,31 @@ ActiveRecord::Schema.define(version: 2021_09_06_070222) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "producer_id", null: false
+    t.integer "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_products", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_recipes", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -71,6 +94,29 @@ ActiveRecord::Schema.define(version: 2021_09_06_070222) do
     t.string "name", null: false
     t.integer "amount", null: false
     t.string "unit", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "producer_id"
+    t.integer "room_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_customer_id"
+    t.integer "visited_producer_id"
+    t.integer "visitor_producer_id"
+    t.integer "visited_customer_id"
+    t.integer "room_id", null: false
+    t.integer "message_id", null: false
+    t.string "action"
+    t.boolean "checked"
+    t.boolean "visitor_is_customer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,6 +142,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_070222) do
     t.integer "payment_method", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "delivery_status"
   end
 
   create_table "producers", force: :cascade do |t|
@@ -132,6 +179,15 @@ ActiveRecord::Schema.define(version: 2021_09_06_070222) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "recipe_comments", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "recipe_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "evaluation"
+  end
+
   create_table "recipe_details", force: :cascade do |t|
     t.integer "recipe_id", null: false
     t.string "image_id", null: false
@@ -145,6 +201,11 @@ ActiveRecord::Schema.define(version: 2021_09_06_070222) do
     t.string "name", null: false
     t.string "image_id"
     t.text "introduction"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

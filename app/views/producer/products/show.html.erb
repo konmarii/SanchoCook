@@ -1,8 +1,16 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
+    <div class="col-md-10 offset-md-1">
       <h2>商品詳細</h2>
-      <div class="row">
+      <div class="d-grid gap-2 d-md-flex justify-content-end mt-3">
+        <div class="mr-2">
+          <%= link_to "編集する", edit_producer_product_path(@product), class: "btn btn-outline-info" %>
+        </div>
+        <div class="mr-2">
+          <%= link_to "削除する", producer_product_path, method: :delete, class: "btn btn-outline-danger", data: {confirm: "本当に削除しますか？"} %>
+        </div>
+      </div>
+      <div class="row mt-3">
         <div class ="col-sm-12 col-md-6 col-lg-5">
           <%= attachment_image_tag @product, :image, :fill, 250, 200, format: 'jpeg' %>
         </div>
@@ -21,42 +29,47 @@
                 税抜価格<br>
                 (税込価格)
               </th>
-              <th><%= @product.tax_excluded_price %> (<%= @product.include_tax.round %>)円</th>
+              <th><%= @product.tax_excluded_price %> (<%= @product.include_tax.round %>)円/kg</th>
             </tr>
             <tr>
               <th class="text-nowrap pr-3">販売ステータス</th>
-
               <% if @product.sales_status == true %>
                 <th class="text-success">販売中</th>
               <% elsif @product.sales_status == false %>
                 <th class="text-muted">売切れ</th>
               <% end %>
-
             </tr>
             <tr>
-             <td>
-              <%= link_to "編集する", edit_producer_product_path(@product), class: "btn btn-success" %>
-             </td>
-             <td>
-              <%= link_to "削除する", producer_product_path, method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除しますか？"} %>
-             </td>
+              <th>お気に入りされた数</th>
+              <th><%= @favorites.count %></th>
             </tr>
           </table>
-          <tr>
-            <%= link_to "レシピの新規登録はこちらから", new_producer_recipe_path, class: "btn btn-info" %>
-          </tr>
         </div>
       </div>
-      <% @recipes.each do |recipe| %>
-        <div class="card" style="width: 18rem;">
-          <%= attachment_image_tag recipe, :image, :fill, 550, 400, format: 'jpeg' %>
-          <div class="card-body">
-            <div class="card-title"><%= recipe.name %></div>
-            <p class="card-text"><%= recipe.introduction %></p>
-            <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-primary" %>
-          </div>
+      <div class="row mt-5">
+        <h2>この商品に紐づくレシピ</h2>
+      </div>
+      <div class="d-flex justify-content-end">
+        <tr>
+          <%= link_to "レシピ新規登録はこちら", new_producer_recipe_path, class: "btn btn-outline-info" %>
+        </tr>
+      </div>
+      <div class="row mt-5">
+        <div class="d-flex align-content-around flex-wrap">
+          <% @recipes.each do |recipe| %>
+            <div class="card" style="width: 15rem;">
+              <%= attachment_image_tag recipe, :image, :fill, 200, 150, format: 'jpeg' %>
+              <div class="card-body">
+                <div class="card-title"><%= recipe.name %></div>
+                <p class="card-text"><%= recipe.introduction %></p>
+                <div class="d-flex justify-content-center">
+                  <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-outline-primary" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <% if @notifications.exists? %>
+                <% @notifications.each do |notification| %>
+                    <% if notification.checked == false %>
+                        <div>
+                            <% producer_id = notification.visitor_producer_id %>
+                            <%= notification.visitor_producer.last_name %>さん
+                            があなたにDMを送りました。
+                            <%= notification.created_at.strftime("%Y-%m-%d %H:%M") %>
+                            <%= link_to '既読にする', notification_path(notification), method: :put %>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <p>通知はありません</p>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,6 @@
 class Customer::CartProductsController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
     @cart_products = CartProduct.where(customer_id: current_customer.id)
     @numbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
@@ -15,32 +17,30 @@ class Customer::CartProductsController < ApplicationController
       end
     end
     @cart_product.save
-    redirect_to cart_products_path
+    redirect_to cart_products_path, success: "商品をカートに追加しました。"
   end
 
   def update
     @cart_product = CartProduct.find(params[:id])
     if @cart_product.update(cart_product_params)
-      redirect_to cart_products_path
+      redirect_to cart_products_path, success: "商品をカートに追加しました。"
     end
   end
 
   def destroy
     cart_product = CartProduct.find(params[:id])
     cart_product.destroy
-    redirect_to cart_products_path
-    flash[:notice_destroy] = "Cart prodcut was successfully destroyed."
+    redirect_to cart_products_path, success: "商品をカートから削除しました。"
   end
 
   def destroy_all
     cart_products = CartProduct.where(customer_id: current_customer.id)
     cart_products.destroy_all
-    redirect_to cart_products_path
-    flash[:notice_destroy] = "Cart prodcuts were successfully destroyed."
+    redirect_to cart_products_path, success: "カートを空にしました。"
   end
-  
 
   private
+
   def cart_product_params
     params.require(:cart_product).permit(:product_id, :customer_id, :amount)
   end

@@ -4,14 +4,26 @@
     <title>SanchoCook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/98bdf12faf.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <%= render 'layouts/header' %>
+  <body class="d-flex flex-column vh-100">
+    <header>
+      <% if request.path == '/' %>
+        <%= render 'layouts/top_header' %>
+      <% else %>
+        <%= render 'layouts/else_header' %>
+      <% end %>
+    </header>
+    
+    <%= render 'layouts/flash' %>
+    
     <%= yield %>
-    <%= render 'layouts/footer' %>
+    
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+      <h2> お問い合わせ一覧</h2>
+      <table class = "table" >
+        <% @entries.each do |entry| %>
+          <tbody>
+            <tr></tr>
+              <td>
+                  <%= link_to producer_message_path(entry) do %>
+                      <%= entry.customer.last_name %>
+                  <% end %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

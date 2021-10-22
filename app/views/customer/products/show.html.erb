@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
+    <%= render "producer_list", producer: @producer %>
+    <div class="col-md-8">
     <h2>商品詳細</h2>
       <div class="product-box col-9 d-flex flex-row">
         <%= attachment_image_tag @product, :image, :fill, 550, 400, format: 'jpeg' %>
@@ -17,24 +18,29 @@
               <%= form_with model: @cart_product, url: create_cart_products_path, method: :post, local: true do |f| %>
                 <%= f.hidden_field :product_id, value: @product.id %>
                 <%= f.hidden_field :customer_id, value: current_customer.id %>
-                <%= f.select :amount, @numbers, class:"select" %>
-                <%= f.submit 'カートに入れる', class:"btn btn-outline-secondary" %>
+                <%= f.select :amount, @numbers, class:"select" %>kg
+                <% if @product.sales_status == true %>
+                  <%= f.submit 'カートに入れる', class:"btn btn-outline-secondary" %>
+                <% else %>
+                  <div>こちらの商品は<br>只今売り切れ中です。</div>
+                <% end %>
               <% end %>
               </div>
+              
+              <%= render 'customer/favorite_products/favorite_products', product: @product, favorite_product: @favorite_product %>
+              
             </div>
           </div>
         </div>
       </div>
-      <% @recipes.each do |recipe| %>
-        <div class="card" style="width: 18rem;">
-          <%= attachment_image_tag recipe, :image, :fill, 550, 400, format: 'jpeg' %>
-          <div class="card-body">
-            <div class="card-title"><%= recipe.name %></div>
-            <p class="card-text"><%= recipe.introduction %></p>
-            <%= link_to 'レシピ詳細へ', producer_recipe_path(recipe), class: "btn btn-primary" %>
-          </div>
-        </div>
-      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <h3>この商品を使ったレシピ一覧</h3>
+      <%= render 'customer/recipes/recipes', recipes: @recipes %>
     </div>
   </div>
 </div>

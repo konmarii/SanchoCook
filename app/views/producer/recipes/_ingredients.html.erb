@@ -1,0 +1,28 @@
+<%= form_with model: [:producer, ingredient], local:true do |f| %>
+
+  <table  class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>材料名</td>
+        <td>
+          <%= f.text_field :name, placeholder: "材料名", class:"form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <td>数量</td>
+        <td>
+          <%= f.text_field :amount, placeholder: "数量", class:"form-control"%>
+        </td>
+        <td>単位</td>
+        <td>
+          <%= f.text_field :unit, placeholder: "単位", class:"form-control" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="d-flex justify-content-center">
+    <%= f.hidden_field :recipe_id, :value => recipe.id %>
+    <%= f.submit '材料を登録', class: "btn btn-success"  %>
+  </div>
+<% end %>

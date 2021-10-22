@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row mt-5">
+    <h2>STEP 2 レシピ詳細編集</h2>
+    <div class="container-fluid">
+      <table class="table table-hover table-inverse">
+        <% @ingredients.each do |ingredient| %>
+          <tr>
+            <th><%= ingredient.name %></th>
+            <th><%= ingredient.amount %><%= ingredient.unit %></th>
+            <th><%= link_to '材料を削除する', producer_ingredient_path(ingredient), method: :delete, class:"btn btn-outline-danger" %></th>
+          </tr>
+        <% end %>
+      </table>
+      <h4>材料登録</h4>
+      <div class="col-md-12">
+        <%= render 'ingredients', ingredients: @ingredients, ingredient: @ingredient, recipe: @recipe %>
+      </div>
+        
+      <h4>手順登録</h4>
+      <div class="col-md-12">
+        <%= render 'recipe_details', recipe_details: @recipe_details, recipe_detail: @recipe_detail, recipe: @recipe %>
+      </div>
+      <div class="d-flex align-content-around flex-wrap">
+        <% i=0 %>
+        <% @recipe_details.each do |recipe_detail| %>
+          <div class="card" style="width: 14rem;">
+            <%= attachment_image_tag recipe_detail, :image, :fill, 200, 150, format: 'jpeg' %>
+            <div class="card-body">
+              <p class="card-text"><%= i+=1 %>.<%= recipe_detail.explanation %></p>
+              <p><%= link_to '手順を削除する', producer_recipe_detail_path(recipe_detail), method: :delete, class:"btn btn-outline-danger" %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="d-grid gap-2 d-md-flex justify-content-center mt-5">
+        <%= link_to "STEP 3 レシピ紹介登録へ", producer_edit_recipe_introduction_path(@recipe), class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+

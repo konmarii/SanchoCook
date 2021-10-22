@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h2>レシピ一覧</h2>
+      <h2>（<%= @recipes.count %>件）</h2>
+      
+      <%= render 'customer/recipes/recipes', recipes: @recipes %>
+      
+      <%= paginate @recipes_pagination %>
+    </div>    
+  </div>
+</div>

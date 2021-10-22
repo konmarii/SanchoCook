@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <h2><%= @customer.last_name %><%= @customer.first_name %>さんからのお問い合わせ</h2>
+            
+            <div class="d-flex justify-content-between">
+              <h4><%= @customer.last_name %><%= @customer.first_name %></h4>
+              <h4><%= current_producer.last_name %><%= current_producer.first_name %></h4>
+            </div>
+
+            <div class="messages">
+              <% @messages.each do |message| %>
+                <% if message.customer_id == nil %>
+                  <div class="d-flex justify-content-end">
+                    <div class="balloon2-right">
+                      <p><%= message.message %></p>
+                      <p><%= message.created_at.strftime("%m/%d %H:%M:%S") %></p>
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="d-flex justify-content-start">
+                    <div class="balloon2-left">
+                      <p><%= message.message %></p>
+                      <p><%= message.created_at.strftime("%m/%d %H:%M:%S") %></p>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="row justify-content-end">
+              <div id="text">
+                <%= form_with model: [:producer, @message], remote: true do |f| %>
+                  <%= f.text_field :message %>
+                  <%= f.hidden_field :room_id, :value => @room.id %>
+              </div>
+              <div>  
+                <%= f.submit "SEND", class:"btn btn-sm btn-success chat-btn" %>
+              </div>
+            <% end %>
+        </div>
+    </div>
+</div>

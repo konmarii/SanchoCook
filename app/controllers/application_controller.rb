@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  add_flash_types :success, :info, :warning, :danger
+
   # 新規登録後のリダイレクト先
   def after_sign_up_path_for(resource_or_scope)
     if resource_or_scope == :producer
@@ -32,10 +34,12 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
       :sign_up,
       keys: [
+        :nickname,
         :company_name,
         :last_name,
         :first_name,
@@ -47,7 +51,7 @@ class ApplicationController < ActionController::Base
         :image,
         :introduction,
         :is_permitted,
-        :is_delited
+        :is_deleted
       ]
     )
   end

@@ -1,82 +1,92 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<%= render "producers/shared/error_messages", resource: resource %>
-
-  <div class="form-group row">
-    <%= f.label :image %><br />
-    <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :company_name %><br />
-    <%= f.text_field :company_name, autofocus: true, class: "form-control" %>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <%= f.label :last_name %><br />
-      <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5">  
+      <h2>SanchoCook生産者 新規登録</h2>
+      
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "producers/shared/error_messages", resource: resource %>
+      
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <%= f.label :image %><br>
+            <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
+          </div>
+        </div>
+      
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <%= f.label :company_name %><br>
+            <%= f.text_field :company_name, autofocus: true, class: "form-control" %>
+          </div>
+        </div>
+      
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <%= f.label :last_name %><br>
+            <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.label :first_name %><br>
+            <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+          </div>
+        </div>
+      
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <%= f.label :last_name_kana %><br>
+            <%= f.text_field :last_name_kana, autofocus: true, class: "form-control" %>
+          </div>
+      
+          <div class="col-sm-6">
+            <%= f.label :first_name_kana %><br>
+            <%= f.text_field :first_name_kana, autofocus: true, class: "form-control" %>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :postal_code %><br>
+          <%= f.text_field :postal_code, autofocus: true, class: "form-control" %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :address %><br>
+          <%= f.text_field :address, autofocus: true, class: "form-control" %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :phone_number %><br>
+          <%= f.text_field :phone_number, autofocus: true, class: "form-control" %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :email %><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :introduction %><br>
+          <%= f.text_field :introduction, autofocus: true, class: "form-control" %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :password_confirmation %><br>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+      
+        <div class="actions">
+          <%= f.submit "新規登録" %>
+        </div>
+      <% end %>
+      
+      <%= render "producers/shared/links" %>
     </div>
-    <div class="col-sm-6">
-      <%= f.label :first_name %><br />
-      <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
-    </div>
   </div>
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <%= f.label :last_name_kana %><br />
-      <%= f.text_field :last_name_kana, autofocus: true, class: "form-control" %>
-    </div>
-
-    <div class="col-sm-6">
-      <%= f.label :first_name_kana %><br />
-      <%= f.text_field :first_name_kana, autofocus: true, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code, autofocus: true, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, autofocus: true, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :introduction %><br />
-    <%= f.text_field :introduction, autofocus: true, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "producers/shared/links" %>
+</div>

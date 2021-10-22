@@ -79,9 +79,13 @@ gem 'enum_help'
 gem "font-awesome-sass", "~> 5.13"
 gem "font_awesome5_rails"
 
-gem 'byebug'
-
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+gem 'payjp'
+
+gem 'rubocop-airbnb'
+
+gem 'chart-js-rails', '~> 0.1.4'

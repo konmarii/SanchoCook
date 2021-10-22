@@ -1,0 +1,20 @@
+======================
+  注文確定のお知らせ
+======================
+  <%= @customer.last_name %><%= @customer.first_name %> 様
+
+  ご注文ありがとうございました。
+  商品の到着までしばらくお待ちください。
+
+　注文内容
+==========================================
+　<%= @order.delivery_name %>
+　〒<%= @order.delivery_postal_code %>
+　<%= @order.delivery_address %>
+  ￥<%= @order.total_payment %>
+  <%= @order.payment_method_i18n %>
+==========================================
+
+  今後とも よろしくお願いいたします。
+  
+  SanchoCook

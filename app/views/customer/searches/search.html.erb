@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12 offset-md-1">
+      <% if @range == "Product" %>
+        <h2>検索商品一覧</h2>
+        
+        <%= render 'customer/products/products', products: @products %>
+        
+      <% else %>
+        <h2>検索レシピ一覧</h2>
+        
+        <%= render 'customer/recipes/recipes', recipes: @recipes %>
+        
+      <% end %>
+    </div>
+  </div>
+</div>

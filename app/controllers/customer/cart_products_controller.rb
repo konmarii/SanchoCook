@@ -3,7 +3,7 @@ class Customer::CartProductsController < ApplicationController
 
   def index
     @cart_products = CartProduct.where(customer_id: current_customer.id)
-    @numbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    @product_counts = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
   end
 
   def create

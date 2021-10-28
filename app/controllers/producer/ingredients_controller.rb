@@ -2,12 +2,6 @@ class Producer::IngredientsController < ApplicationController
   before_action :authenticate_producer!
   before_action :permitted_producer
 
-  def permitted_producer
-    if current_producer.is_permitted != true
-      redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
-    end
-  end
-
   def create
     @ingredient = Ingredient.new(ingredient_params)
     @recipe = params[:id]
@@ -26,6 +20,12 @@ class Producer::IngredientsController < ApplicationController
   end
 
   private
+
+  def permitted_producer
+    if !current_producer.is_permitted
+      redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
+    end
+  end
 
   def ingredient_params
     params.require(:ingredient).permit(:recipe_id, :name, :amount, :unit)

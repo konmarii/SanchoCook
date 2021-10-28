@@ -2,12 +2,6 @@ class Producer::ProductsController < ApplicationController
   before_action :authenticate_producer!
   before_action :permitted_producer
 
-  def permitted_producer
-    if current_producer.is_permitted != true
-      redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
-    end
-  end
-
   def index
     @products = Product.where(producer_id: current_producer.id)
     @products_pagination = @products.page(params[:page]).per(10)
@@ -53,6 +47,12 @@ class Producer::ProductsController < ApplicationController
   end
 
   private
+
+  def permitted_producer
+    if !current_producer.is_permitted
+      redirect_to producer_root_path, info: "権限がありません。管理者からの承認をお待ちください。"
+    end
+  end
 
   def product_params
     params.require(:product).permit(:name, :introduction, :image, :tax_excluded_price, :sales_status)

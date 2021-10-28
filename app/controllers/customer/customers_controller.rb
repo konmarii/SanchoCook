@@ -25,6 +25,7 @@ class Customer::CustomersController < ApplicationController
   end
 
   private
+  
   def correct_customer
     @customer = Customer.find(params[:id])
     unless @customer.id == current_customer.id

@@ -10,8 +10,9 @@ class Customer::FavoritesController < ApplicationController
     end
     
     # @products = @favorite_products.each { |fp| fp.product }
+    @products = @favorite_products.map(&:product).compact
+    # [{}, {}, ]
     
-
     @favorite_recipes = FavoriteRecipe.where(customer_id: current_customer.id)
     
     @recipes = []

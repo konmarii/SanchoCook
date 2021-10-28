@@ -5,6 +5,39 @@ class Producer::ProducersController < ApplicationController
     @producer = Producer.find(current_producer.id)
     
     @order_products = OrderProduct.joins(:product).where(products: { producer_id: current_producer.id })
+    # {0 => [], 1 => [], 2 => []}
+    # [[], [], [], [], []]
+    # @sales_some_days = (0..6).to_a.map do |day_number|
+    #   # do something
+    #   time_data = day_number == 0 ? Time.zone.now : day_number.day.ago
+    #   order_prodcts = @order_products.where(created_at: time_data.all_day)
+    #   order_prodcts.blank? ? [] : order_prodcts.map(&:tax_price)
+    # end
+    
+  # @sales_some_days = []
+    # (0..6).to_a.each do |day_number|
+    #   time_data = day_number == 0 ? Time.zone.now : day_number.day.ago
+    #   order_prodcts = @order_products.where(created_at: time_data.all_day)
+    #   @sales_some_days << order_prodcts.map(&:tax_price)
+    # end
+    
+    # (0..6).to_a.each do |day_number|
+    #   # implement me!
+    # end
+    
+    # @sales_some_days.each_with_index do |index, day_array|
+    # # index => 0, 1, 2....
+    #  day_array.each do |day|
+    #    day.do_something!
+    #  end
+    # end
+    
+    # @sales_some_days_hash.each do |key, value|
+    # # key => 0
+    # # value => []
+    # end
+    
+    @order_products = OrderProduct.joins(:product).where(products: { producer_id: current_producer.id })
     # 週間売り上げ
     @order_products_6days_ago = @order_products.where(created_at: 6.day.ago.all_day)
     @sales_6days_ago = []
@@ -47,6 +80,18 @@ class Producer::ProducersController < ApplicationController
     @order_products_today.each do |order_product_today|
       @sales_today << order_product_today.tax_price
     end
+    
+    
+  # # 6日前のデータを取得
+  # @weekly = []
+  # for (0..7).each do |i|
+  #   if i == 0
+  #     products_before_i_days = @order_products.where(created_at: Time.zone.now.all_day)
+  #   else
+  #     products_before_i_days = @order_products.where(created_at: i.day.ago.all_day)
+  #   end
+  #   products_before_i_days.map { |before| @weekly << before.tax_price}
+    
     
     # 月間売り上げ
     @order_products_6months_ago = @order_products.where(created_at: 6.month.ago.all_month)

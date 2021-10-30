@@ -5,6 +5,16 @@ class Producer::ProducersController < ApplicationController
     @producer = Producer.find(current_producer.id)
     
     @order_products = OrderProduct.joins(:product).where(products: { producer_id: current_producer.id })
+    
+    # @daily_sales = []
+    # (0..6).to_a.each do |day_count|
+    #   time_data = day_count == 0 ? Time.zone.now : day_count.day.ago
+    #   @order_products_per_day = @order_products.where(created_at: time_data.all_day)
+    #   @order_products_per_day.each do |order_product_per_day|
+    #     @daily_sales << order_product_per_day.tax_price.sum
+    #   end
+    # end
+      
     # 週間売り上げ
     @order_products_6days_ago = @order_products.where(created_at: 6.day.ago.all_day)
     @sales_6days_ago = []

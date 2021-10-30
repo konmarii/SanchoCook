@@ -10,7 +10,6 @@ class Producer::MessagesController < ApplicationController
     @entry = Entry.find(params[:id])
     @customer = @entry.customer
     @room = @entry.room
-
     @messages = @room.messages
     @message = Message.new(room_id: @room.id)
   end
